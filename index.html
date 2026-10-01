@@ -316,7 +316,20 @@
 
   generateQRCode();
   setInterval(generateQRCode, 2900);
-   function updateStripColours() {
+     function getCurrentHourKey() {
+    const now = new Date();
+
+    return new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      hour12: false
+    }).format(now);
+  }
+
+  function generateStripColours() {
     let colours = [];
 
     while (colours.length < 3) {
@@ -329,7 +342,22 @@
       }
     }
 
-    localStorage.setItem("mustiBusStripColours", JSON.stringify(colours));
+    return colours;
+  }
+
+  function updateStripColours() {
+    const hourKey = getCurrentHourKey();
+    const savedHour = localStorage.getItem("mustiBusStripHour");
+    let colours;
+
+    if (savedHour === hourKey) {
+      colours = JSON.parse(localStorage.getItem("mustiBusStripColours"));
+    } else {
+      colours = generateStripColours();
+
+      localStorage.setItem("mustiBusStripHour", hourKey);
+      localStorage.setItem("mustiBusStripColours", JSON.stringify(colours));
+    }
 
     const strips = document.querySelectorAll(".expiry-strip .strip");
 
@@ -338,33 +366,9 @@
     strips[2].style.backgroundColor = colours[2];
   }
 
-  function loadStripColours() {
-    const saved = localStorage.getItem("mustiBusStripColours");
+  updateStripColours();
 
-    if (saved) {
-      const colours = JSON.parse(saved);
-      const strips = document.querySelectorAll(".expiry-strip .strip");
-
-      strips[0].style.backgroundColor = colours[0];
-      strips[1].style.backgroundColor = colours[1];
-      strips[2].style.backgroundColor = colours[2];
-    } else {
-      updateStripColours();
-    }
-  }
-
-  loadStripColours();
-
-  let lastHour = new Date().getHours();
-
-  setInterval(() => {
-    const currentHour = new Date().getHours();
-
-    if (currentHour !== lastHour) {
-      lastHour = currentHour;
-      updateStripColours();
-    }
-  }, 1000);
+  setInterval(updateStripColours, 1000);
 
   function updateExpiry() {
     const now = new Date();
