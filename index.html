@@ -316,38 +316,55 @@
 
   generateQRCode();
   setInterval(generateQRCode, 2900);
-  function updateStripColours() {
-  let colours = [];
+   function updateStripColours() {
+    let colours = [];
 
-  while (colours.length < 3) {
-    const colour = "#" + Math.floor(Math.random() * 16777215)
-      .toString(16)
-      .padStart(6, "0");
+    while (colours.length < 3) {
+      const colour = "#" + Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, "0");
 
-    if (!colours.includes(colour)) {
-      colours.push(colour);
+      if (!colours.includes(colour)) {
+        colours.push(colour);
+      }
+    }
+
+    localStorage.setItem("mustiBusStripColours", JSON.stringify(colours));
+
+    const strips = document.querySelectorAll(".expiry-strip .strip");
+
+    strips[0].style.backgroundColor = colours[0];
+    strips[1].style.backgroundColor = colours[1];
+    strips[2].style.backgroundColor = colours[2];
+  }
+
+  function loadStripColours() {
+    const saved = localStorage.getItem("mustiBusStripColours");
+
+    if (saved) {
+      const colours = JSON.parse(saved);
+      const strips = document.querySelectorAll(".expiry-strip .strip");
+
+      strips[0].style.backgroundColor = colours[0];
+      strips[1].style.backgroundColor = colours[1];
+      strips[2].style.backgroundColor = colours[2];
+    } else {
+      updateStripColours();
     }
   }
 
-  const strips = document.querySelectorAll(".expiry-strip .strip");
+  loadStripColours();
 
-  strips[0].style.backgroundColor = colours[0];
-  strips[1].style.backgroundColor = colours[1];
-  strips[2].style.backgroundColor = colours[2];
-}
+  let lastHour = new Date().getHours();
 
-updateStripColours();
+  setInterval(() => {
+    const currentHour = new Date().getHours();
 
-let lastHour = new Date().getHours();
-
-setInterval(() => {
-  const currentHour = new Date().getHours();
-
-  if (currentHour !== lastHour) {
-    lastHour = currentHour;
-    updateStripColours();
-  }
-}, 1000);
+    if (currentHour !== lastHour) {
+      lastHour = currentHour;
+      updateStripColours();
+    }
+  }, 1000);
 
   function updateExpiry() {
     const now = new Date();
