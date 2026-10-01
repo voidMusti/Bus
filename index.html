@@ -316,6 +316,38 @@
 
   generateQRCode();
   setInterval(generateQRCode, 2900);
+  function updateStripColours() {
+  let colours = [];
+
+  while (colours.length < 3) {
+    const colour = "#" + Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, "0");
+
+    if (!colours.includes(colour)) {
+      colours.push(colour);
+    }
+  }
+
+  const strips = document.querySelectorAll(".expiry-strip .strip");
+
+  strips[0].style.backgroundColor = colours[0];
+  strips[1].style.backgroundColor = colours[1];
+  strips[2].style.backgroundColor = colours[2];
+}
+
+updateStripColours();
+
+let lastHour = new Date().getHours();
+
+setInterval(() => {
+  const currentHour = new Date().getHours();
+
+  if (currentHour !== lastHour) {
+    lastHour = currentHour;
+    updateStripColours();
+  }
+}, 1000);
 
   function updateExpiry() {
     const now = new Date();
