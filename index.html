@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head> 
@@ -5,6 +6,8 @@
   <meta name="color-scheme" content="light">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="robots" content="noindex, nofollow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>mustiBus</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <!-- mustiBus demo project - fictional recreation -->
@@ -38,9 +41,8 @@
         0 5px 12px rgba(0, 0, 0, 0.17),
         0 2px 4px rgba(0, 0, 0, 0.10);
       position: relative;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
     }
 
     .top-strip {
@@ -91,36 +93,37 @@
     }
 
     #qrcode {
-  width: 100% !important;
-  height: 100% !important;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+      width: 100% !important;
+      height: 100% !important;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-#qrcode canvas {
-  display: block;
-}
+    #qrcode canvas {
+      display: block;
+    }
 
-/* perfectly centered rings with thinner dot */
-#qrcode::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;   /* thinner dot */
-  height: 4px;
-  background: black;
-  transform: translate(-50%, -50%);
-  box-shadow:
-    0 0 0 4px white,
-    0 0 0 8px black,
-    0 0 0 12px white,
-    0 0 0 16px black,
-    0 0 0 20px white,
-    0 0 0 24px black;
-}
+    /* perfectly centered rings with thinner dot */
+    #qrcode::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 4px;
+      height: 4px;
+      background: black;
+      transform: translate(-50%, -50%);
+      box-shadow:
+        0 0 0 4px white,
+        0 0 0 8px black,
+        0 0 0 12px white,
+        0 0 0 16px black,
+        0 0 0 20px white,
+        0 0 0 24px black;
+    }
+
     .text {
       font-size: 15px;
       line-height: 1.2;
@@ -259,15 +262,7 @@
 
 <div class="ticket">
   <div class="top-strip">
-    
-
-
-
-<div class="close" onclick="window.location.href='home.html'">Close</div>
-
-
-
-
+    <div class="close" onclick="window.location.href='home.html'">Close</div>
   </div>
 
   <div class="header">
@@ -324,7 +319,8 @@
 
   generateQRCode();
   setInterval(generateQRCode, 2900);
-     function getCurrentHourKey() {
+
+  function getCurrentHourKey() {
     const now = new Date();
 
     return new Intl.DateTimeFormat('en-GB', {
@@ -375,7 +371,6 @@
   }
 
   updateStripColours();
-
   setInterval(updateStripColours, 1000);
 
   function updateExpiry() {
@@ -402,7 +397,8 @@
   updateExpiry();
   setInterval(updateExpiry, 1000);
 </script>
-  <div style="
+
+<div style="
   position:fixed;
   bottom:3px;
   left:10px;
@@ -411,7 +407,7 @@
   opacity:0.6;
   user-select:none;
 ">
-UI Demo project
+  UI Demo project
 </div>
 
 </body>
