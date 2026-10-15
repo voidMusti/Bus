@@ -1,1 +1,189 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>mTickets - Wallet</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #363636;
+      background: #eef5ff;
+    }
+
+    .header {
+      height: 220px;
+      padding: 135px 30px 25px;
+      color: white;
+      background: linear-gradient(135deg, #ed0030 0%, #ed0030 52%, #55585c 52%, #55585c 100%);
+      position: relative;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 40px;
+      font-weight: 800;
+    }
+
+    .profile {
+      position: absolute;
+      right: 28px;
+      bottom: 40px;
+      background: white;
+      color: #363636;
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+    }
+
+    .tabs {
+      display: flex;
+      margin: 95px 24px 30px;
+      border-bottom: 2px solid #363636;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 15px 2px 20px;
+      font-size: 17px;
+      font-weight: 750;
+    }
+
+    .ticket-panel {
+      margin: 0 20px 32px;
+      min-height: 610px;
+      background: white;
+      border-radius: 17px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px #dfe7f0;
+    }
+
+    .ticket-card {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 18px 14px;
+      margin: 5px 0 28px;
+      text-align: left;
+      background: #fff;
+    }
+
+    .ticket-card:active {
+      background: #f6f6f6;
+    }
+
+    .ticket-card h2 {
+      margin: 0 0 9px;
+      font-size: 19px;
+    }
+
+    .ticket-card p {
+      margin: 0;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .ticket-preview {
+      display: flex;
+      height: 54px;
+      margin-top: 17px;
+      border-radius: 7px;
+      overflow: hidden;
+    }
+
+    .ticket-preview span:nth-child(1) { background: #537DA9; flex: 1; }
+    .ticket-preview span:nth-child(2) { background: #FC48F0; flex: 1; }
+    .ticket-preview span:nth-child(3) { background: #904893; flex: 1; }
+
+    .description {
+      margin-top: 40px;
+      color: #7c7f84;
+      font-size: 21px;
+      line-height: 1.45;
+    }
+
+    .buy-button {
+      display: block;
+      margin: 0 20px 25px;
+      padding: 22px 8px;
+      border-radius: 50px;
+      text-align: center;
+      background: #ed0030;
+      color: white;
+      font-size: 22px;
+      font-weight: 750;
+    }
+
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: white;
+      border-top: 1px solid #d8dfe8;
+      padding: 18px 5px 24px;
+    }
+
+    .nav-item {
+      text-align: center;
+      font-weight: 650;
+      font-size: 14px;
+    }
+
+    .nav-icon {
+      font-size: 29px;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 430px) {
+      .header h1 { font-size: 38px; }
+      .ticket-panel { min-height: 560px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>mTickets</h1>
+    <div class="profile">♙</div>
+  </header>
+
+  <nav class="tabs">
+    <div class="tab">▱ &nbsp; Current tickets</div>
+    <div class="tab">◴ &nbsp; Ticket history</div>
+  </nav>
+
+  <main class="ticket-panel">
+    <a class="ticket-card" href="index.html">
+      <h2>nBus - 1618 - Direct Issue</h2>
+      <p>Unlimited travel · West Midlands nBus zone</p>
+      <div class="ticket-preview">
+        <span></span><span></span><span></span>
+      </div>
+    </a>
+
+    <p class="description">
+      Your ticket is ready to view.
+    </p>
+  </main>
+
+  <div class="buy-button">Buy a new ticket</div>
+
+  <footer class="bottom-nav">
+    <div class="nav-item"><div class="nav-icon">▣</div>Wallet</div>
+    <div class="nav-item"><div class="nav-icon">♧</div>Notifications</div>
+    <div class="nav-item"><div class="nav-icon">ϟ</div>Tools</div>
+  </footer>
+</body>
+</html>
+
