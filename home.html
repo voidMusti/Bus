@@ -3,81 +3,118 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light">
   <title>mTickets - Wallet</title>
-  <style>
-    * { box-sizing: border-box; }
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
       margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #363636;
       background: #eef5ff;
     }
 
+    body {
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
     .header {
-      height: 220px;
-      padding: 135px 30px 25px;
-      color: white;
-      background: linear-gradient(135deg, #ed0030 0%, #ed0030 52%, #55585c 52%, #55585c 100%);
+      height: 14%;
+      min-height: 95px;
+      max-height: 145px;
+      flex-shrink: 0;
+      padding: 0 26px 22px;
+      display: flex;
+      align-items: flex-end;
       position: relative;
+      color: white;
+      background: linear-gradient(
+        135deg,
+        #ed0030 0%,
+        #ed0030 52%,
+        #55585c 52%,
+        #55585c 100%
+      );
     }
 
     .header h1 {
       margin: 0;
-      font-size: 40px;
+      font-size: clamp(30px, 8vw, 40px);
       font-weight: 800;
+      line-height: 1;
     }
 
     .profile {
       position: absolute;
-      right: 28px;
-      bottom: 40px;
-      background: white;
-      color: #363636;
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
+      right: 22px;
+      bottom: 20px;
+      width: 48px;
+      height: 48px;
       display: grid;
       place-items: center;
-      font-size: 34px;
+      border-radius: 13px;
+      background: white;
+      color: #363636;
+      font-size: 28px;
     }
 
     .tabs {
+      flex-shrink: 0;
+      height: 10%;
+      min-height: 65px;
+      max-height: 90px;
       display: flex;
-      margin: 95px 24px 30px;
+      align-items: flex-end;
+      margin: 0 22px;
       border-bottom: 2px solid #363636;
     }
 
     .tab {
       flex: 1;
+      min-width: 0;
       text-align: center;
-      padding: 15px 2px 20px;
-      font-size: 17px;
+      padding: 12px 2px 14px;
+      font-size: clamp(12px, 3.7vw, 17px);
       font-weight: 750;
+      white-space: nowrap;
     }
 
     .ticket-panel {
-      margin: 0 20px 32px;
-      min-height: 610px;
+      flex: 1;
+      min-height: 0;
+      margin: 12px 16px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       background: white;
-      border-radius: 17px;
-      padding: 24px 20px;
-      text-align: center;
+      border-radius: 16px;
       box-shadow: 0 2px 5px #dfe7f0;
+      text-align: center;
     }
 
     .ticket-card {
       display: block;
+      padding: 14px;
       color: inherit;
       text-decoration: none;
+      text-align: left;
+      background: white;
       border: 1px solid #e0e0e0;
       border-radius: 12px;
-      padding: 18px 14px;
-      margin: 5px 0 28px;
-      text-align: left;
-      background: #fff;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .ticket-card:active {
@@ -85,77 +122,136 @@
     }
 
     .ticket-card h2 {
-      margin: 0 0 9px;
-      font-size: 19px;
+      margin: 0 0 7px;
+      font-size: clamp(16px, 4.5vw, 19px);
+      font-weight: 750;
     }
 
     .ticket-card p {
       margin: 0;
       color: #777;
-      font-size: 14px;
+      font-size: 13px;
+      line-height: 1.35;
     }
 
     .ticket-preview {
       display: flex;
-      height: 54px;
-      margin-top: 17px;
-      border-radius: 7px;
+      height: 38px;
+      margin-top: 12px;
       overflow: hidden;
+      border-radius: 6px;
     }
 
-    .ticket-preview span:nth-child(1) { background: #537DA9; flex: 1; }
-    .ticket-preview span:nth-child(2) { background: #FC48F0; flex: 1; }
-    .ticket-preview span:nth-child(3) { background: #904893; flex: 1; }
+    .ticket-preview span:nth-child(1) {
+      flex: 1;
+      background: #537DA9;
+    }
+
+    .ticket-preview span:nth-child(2) {
+      flex: 1;
+      background: #FC48F0;
+    }
+
+    .ticket-preview span:nth-child(3) {
+      flex: 1;
+      background: #904893;
+    }
 
     .description {
-      margin-top: 40px;
+      margin: 18px 0 0;
       color: #7c7f84;
-      font-size: 21px;
-      line-height: 1.45;
+      font-size: clamp(14px, 4vw, 19px);
+      line-height: 1.35;
     }
 
     .buy-button {
-      display: block;
-      margin: 0 20px 25px;
-      padding: 22px 8px;
+      flex-shrink: 0;
+      margin: 0 16px 12px;
+      padding: 15px 6px;
       border-radius: 50px;
-      text-align: center;
       background: #ed0030;
       color: white;
-      font-size: 22px;
+      text-align: center;
+      font-size: clamp(17px, 5vw, 22px);
       font-weight: 750;
     }
 
     .bottom-nav {
+      flex-shrink: 0;
+      min-height: 76px;
+      padding: 7px 4px max(8px, env(safe-area-inset-bottom));
       display: flex;
       justify-content: space-around;
       align-items: center;
       background: white;
       border-top: 1px solid #d8dfe8;
-      padding: 18px 5px 24px;
     }
 
     .nav-item {
+      flex: 1;
       text-align: center;
       font-weight: 650;
-      font-size: 14px;
+      font-size: 12px;
     }
 
     .nav-icon {
-      font-size: 29px;
-      margin-bottom: 8px;
+      margin-bottom: 3px;
+      font-size: 23px;
+      line-height: 1.1;
     }
 
-    @media (max-width: 430px) {
-      .header h1 { font-size: 38px; }
-      .ticket-panel { min-height: 560px; }
+    @media (max-height: 700px) {
+      .header {
+        min-height: 85px;
+        padding-bottom: 15px;
+      }
+
+      .profile {
+        bottom: 12px;
+        width: 42px;
+        height: 42px;
+      }
+
+      .tabs {
+        min-height: 55px;
+      }
+
+      .ticket-panel {
+        margin-top: 7px;
+        margin-bottom: 7px;
+        padding: 10px;
+      }
+
+      .ticket-card {
+        padding: 10px;
+      }
+
+      .ticket-preview {
+        height: 30px;
+        margin-top: 8px;
+      }
+
+      .description {
+        margin-top: 10px;
+      }
+
+      .buy-button {
+        margin-bottom: 7px;
+        padding: 11px 6px;
+      }
+
+      .bottom-nav {
+        min-height: 65px;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <header class="header">
     <h1>mTickets</h1>
-    <div class="profile">♙</div>
+    <div class="profile" aria-label="Profile">♙</div>
   </header>
 
   <nav class="tabs">
@@ -164,26 +260,44 @@
   </nav>
 
   <main class="ticket-panel">
+
     <a class="ticket-card" href="index.html">
       <h2>nBus - 1618 - Direct Issue</h2>
       <p>Unlimited travel · West Midlands nBus zone</p>
-      <div class="ticket-preview">
-        <span></span><span></span><span></span>
+
+      <div class="ticket-preview" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </a>
 
     <p class="description">
-      Your ticket is ready to view.
+      Tap your ticket above to view it.
     </p>
+
   </main>
 
-  <div class="buy-button">Buy a new ticket</div>
+  <div class="buy-button">
+    Buy a new ticket
+  </div>
 
   <footer class="bottom-nav">
-    <div class="nav-item"><div class="nav-icon">▣</div>Wallet</div>
-    <div class="nav-item"><div class="nav-icon">♧</div>Notifications</div>
-    <div class="nav-item"><div class="nav-icon">ϟ</div>Tools</div>
+    <div class="nav-item">
+      <div class="nav-icon">▣</div>
+      Wallet
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">♧</div>
+      Notifications
+    </div>
+
+    <div class="nav-item">
+      <div class="nav-icon">ϟ</div>
+      Tools
+    </div>
   </footer>
+
 </body>
 </html>
-
