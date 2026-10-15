@@ -28,7 +28,7 @@
       width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
-      padding-bottom: 24px;
+      padding-bottom: 8px;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
@@ -67,14 +67,19 @@
       position: absolute;
       right: 22px;
       bottom: 20px;
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       display: grid;
       place-items: center;
-      border-radius: 13px;
+      border-radius: 14px;
       background: white;
       color: #363636;
-      font-size: 28px;
+    }
+
+    .profile svg {
+      width: 29px;
+      height: 29px;
+      display: block;
     }
 
     .tabs {
@@ -99,21 +104,22 @@
     }
 
     .ticket-panel {
-  flex: 1 1 0;
-  min-height: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 12px 16px;
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background: white;
-  border-radius: 18px;
-}
+      flex: 1 1 0;
+      min-height: 180px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 8px 16px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      background: white;
+      border-radius: 18px;
+    }
 
     .ticket-card {
       display: block;
+      flex-shrink: 0;
       padding: 14px;
       color: inherit;
       text-decoration: none;
@@ -165,7 +171,8 @@
     }
 
     .description {
-      margin: 18px 0 0;
+      flex-shrink: 0;
+      margin: 14px 0 0;
       color: #7c7f84;
       font-size: clamp(14px, 4vw, 19px);
       line-height: 1.35;
@@ -173,8 +180,8 @@
 
     .buy-button {
       flex-shrink: 0;
-      margin: 0 16px 12px;
-      padding: 15px 6px;
+      margin: 0 16px 8px;
+      padding: 13px 6px;
       border-radius: 50px;
       background: #ed0030;
       color: white;
@@ -185,8 +192,8 @@
 
     .bottom-nav {
       flex-shrink: 0;
-      min-height: 76px;
-      padding: 7px 4px max(8px, env(safe-area-inset-bottom));
+      min-height: 68px;
+      padding: 6px 4px max(6px, env(safe-area-inset-bottom));
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -196,15 +203,31 @@
 
     .nav-item {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      gap: 3px;
       font-weight: 650;
       font-size: 12px;
     }
 
     .nav-icon {
-      margin-bottom: 3px;
-      font-size: 23px;
-      line-height: 1.1;
+      width: 27px;
+      height: 27px;
+      display: block;
+    }
+
+    .nav-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     @media (max-height: 700px) {
@@ -224,9 +247,9 @@
       }
 
       .ticket-panel {
-        margin-top: 7px;
-        margin-bottom: 7px;
-        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        padding: 8px;
       }
 
       .ticket-card {
@@ -239,16 +262,21 @@
       }
 
       .description {
-        margin-top: 10px;
+        margin-top: 9px;
       }
 
       .buy-button {
-        margin-bottom: 7px;
-        padding: 11px 6px;
+        margin-bottom: 6px;
+        padding: 10px 6px;
       }
 
       .bottom-nav {
-        min-height: 65px;
+        min-height: 60px;
+      }
+
+      .nav-icon {
+        width: 24px;
+        height: 24px;
       }
     }
   </style>
@@ -258,7 +286,19 @@
 
   <header class="header">
     <h1>mTickets</h1>
-    <div class="profile" aria-label="Profile">♙</div>
+
+    <div class="profile" aria-label="Profile">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="7" r="3.2"
+          stroke="currentColor" stroke-width="1.8" fill="none"/>
+        <path d="M5.5 20v-2.1a6.5 6.5 0 0 1 13 0V20z"
+          stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M9.5 12.5 12 14l2.5-1.5"
+          stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
   </header>
 
   <nav class="tabs">
@@ -290,20 +330,38 @@
   </div>
 
   <footer class="bottom-nav">
+
     <div class="nav-item">
-      <div class="nav-icon">▣</div>
-      Wallet
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 7.5h17a1 1 0 0 1 1 1v11H3z"/>
+          <path d="M3 7.5V5.8A1.8 1.8 0 0 1 4.8 4H19"/>
+          <path d="M3 10.5h18"/>
+          <path d="M15.5 14.5h3"/>
+        </svg>
+      </span>
+      <span>Wallet</span>
     </div>
 
     <div class="nav-item">
-      <div class="nav-icon">♧</div>
-      Notifications
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+          <path d="M10 21h4"/>
+        </svg>
+      </span>
+      <span>Notifications</span>
     </div>
 
     <div class="nav-item">
-      <div class="nav-icon">ϟ</div>
-      Tools
+      <span class="nav-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M13.5 2 5.5 13h6l-1 9 8-12h-6z"/>
+        </svg>
+      </span>
+      <span>Tools</span>
     </div>
+
   </footer>
 
 </body>
