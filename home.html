@@ -185,20 +185,11 @@
       border-radius: 6px;
     }
 
-    .ticket-preview span:nth-child(1) {
-      flex: 1;
-      background: #537DA9;
-    }
+    
+.ticket-preview span {
+  flex: 1;
+}
 
-    .ticket-preview span:nth-child(2) {
-      flex: 1;
-      background: #FC48F0;
-    }
-
-    .ticket-preview span:nth-child(3) {
-      flex: 1;
-      background: #904893;
-    }
 
     .description {
       flex-shrink: 0;
@@ -416,5 +407,50 @@
       <span>Tools</span>
     </div>
   </footer>
+  
+<script>
+  function updateWalletStripColours() {
+    const now = new Date();
+
+    const hourKey = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      hour12: false
+    }).format(now);
+
+    let colours = null;
+
+    if (localStorage.getItem('mustiBusStripHour') === hourKey) {
+      try {
+        colours = JSON.parse(
+          localStorage.getItem('mustiBusStripColours')
+        );
+      } catch (error) {}
+    }
+
+    if (
+      !Array.isArray(colours) ||
+      colours.length !== 3 ||
+      !colours.every(c =>
+        typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c)
+      )
+    ) {
+      colours = ['#537DA9', '#FC48F0', '#904893'];
+    }
+
+    document.querySelectorAll('.ticket-preview span')
+      .forEach((strip, index) => {
+        strip.style.backgroundColor = colours[index];
+      });
+  }
+
+  updateWalletStripColours();
+  setInterval(updateWalletStripColours, 1000);
+  window.addEventListener('pageshow', updateWalletStripColours);
+</script>
+
 </body>
 </html>
