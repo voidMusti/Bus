@@ -1,0 +1,13 @@
+
+{
+  "name": "mustiBus",
+  "short_name": "mTickets",
+  "description": "mustiBus ticket wallet demo",
+  "start_url": "./home.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef5ff",
+  "theme_color": "#eef5ff",
+  "icons": []
+}
