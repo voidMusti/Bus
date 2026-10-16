@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="mobile-web-app-capable" content="yes">
   <title>mTickets - Wallet</title>
-
+  
   <link rel="manifest" href="manifest.json">
 
   <style>
@@ -160,27 +160,15 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .ticket-card {
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
-      transition: background-color 0.12s ease;
-    }
+    
+.ticket-card {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
+  transition: background-color 0.12s ease;
+}
 
-    .ticket-card:active {
-      background: #e8e8e8;
-    }
-
-    /* Slide-up navigation handoff */
-    body.ticket-leaving {
-      overflow: hidden;
-    }
-
-    body.ticket-leaving .ticket-card {
-      pointer-events: none;
-    }
-
-    body.ticket-leaving .ticket-panel {
-      overflow: hidden;
-    }
+.ticket-card:active {
+  background: #e8e8e8;
+}
 
     .ticket-card h2 {
       margin: 0 0 7px;
@@ -316,12 +304,6 @@
         height: 24px;
       }
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      .ticket-card {
-        transition: none;
-      }
-    }
   </style>
 </head>
 
@@ -331,11 +313,21 @@
 
     <div class="profile" aria-label="Profile">
       <svg viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="15" r="7"
-          stroke="currentColor" stroke-width="3.2" fill="none"/>
-        <path d="M7 39 C7 29, 15 27, 24 27 C33 27, 41 29, 41 39"
-          stroke="currentColor" stroke-width="3.2"
-          stroke-linecap="round" fill="none"/>
+        <circle
+          cx="24"
+          cy="15"
+          r="7"
+          stroke="currentColor"
+          stroke-width="3.2"
+          fill="none"
+        />
+        <path
+          d="M7 39 C7 29, 15 27, 24 27 C33 27, 41 29, 41 39"
+          stroke="currentColor"
+          stroke-width="3.2"
+          stroke-linecap="round"
+          fill="none"
+        />
       </svg>
     </div>
   </header>
@@ -411,27 +403,8 @@
       <span>Tools</span>
     </div>
   </footer>
-
+  
   <script>
-    const ticketCard = document.querySelector(".ticket-card");
-
-    ticketCard.addEventListener("click", function (event) {
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-        return;
-      }
-
-      event.preventDefault();
-
-      if (document.body.classList.contains("ticket-leaving")) return;
-
-      document.body.classList.add("ticket-leaving");
-      sessionStorage.setItem("mustiBusTicketOpening", "yes");
-
-      setTimeout(function () {
-        window.location.href = ticketCard.href;
-      }, 120);
-    });
-
     function getCurrentHourKey() {
       return new Intl.DateTimeFormat('en-GB', {
         timeZone: 'Europe/London',
