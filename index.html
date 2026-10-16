@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head> 
@@ -11,7 +10,7 @@
   <title>mustiBus</title>
   <link rel="manifest" href="manifest.json">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<!-- mustiBus demo project - fictional recreation -->
+  <!-- mustiBus demo project - fictional recreation -->
   <style>
     * {
       margin: 0;
@@ -19,25 +18,21 @@
       box-sizing: border-box;
     }
 
-    
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #fafafa;
-  color: #fff;
-  min-height: 100vh;
-  min-height: 100dvh;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #fafafa;
+      color: #fff;
+      min-height: 100vh;
+      min-height: 100dvh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
 
     .ticket {
       width: 100%;
@@ -157,7 +152,9 @@ body {
       display: flex;
     }
 
-    .strip { flex: 1; }
+    .strip {
+      flex: 1;
+    }
 
     .expiry-time {
       position: absolute;
@@ -288,9 +285,9 @@ body {
 
   <div class="expiry-container">
     <div class="expiry-strip">
-      <div class="strip" style="background:#537DA9"></div>
-      <div class="strip" style="background:#FC48F0"></div>
-      <div class="strip" style="background:#904893"></div>
+      <div class="strip"></div>
+      <div class="strip"></div>
+      <div class="strip"></div>
     </div>
     <div class="expiry-time" id="expiry-time"></div>
   </div>
@@ -329,54 +326,39 @@ body {
   generateQRCode();
   setInterval(generateQRCode, 2900);
 
-  function getCurrentHourKey() {
-    const now = new Date();
-
-    return new Intl.DateTimeFormat('en-GB', {
+  // The same UK-hour colour set is calculated on every device.
+  function getSharedHourlyStripColours() {
+    const parts = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Europe/London',
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
       hour: '2-digit',
-      hour12: false
-    }).format(now);
-  }
+      hourCycle: 'h23'
+    }).formatToParts(new Date());
 
-  function generateStripColours() {
-    let colours = [];
+    const part = type => parts.find(item => item.type === type).value;
+    const year = Number(part('year'));
+    const month = Number(part('month'));
+    const day = Number(part('day'));
+    const hour = Number(part('hour'));
 
-    while (colours.length < 3) {
-      const colour = "#" + Math.floor(Math.random() * 16777215)
-        .toString(16)
-        .padStart(6, "0");
+    // A shared hourly number makes the palette deterministic across devices.
+    const hourNumber = Math.floor(Date.UTC(year, month - 1, day, hour) / 3600000);
+    const baseHue = ((hourNumber * 53) % 360 + 360) % 360;
 
-      if (!colours.includes(colour)) {
-        colours.push(colour);
-      }
-    }
-
-    return colours;
+    return [0, 120, 240].map(offset =>
+      `hsl(${(baseHue + offset) % 360}, 75%, 48%)`
+    );
   }
 
   function updateStripColours() {
-    const hourKey = getCurrentHourKey();
-    const savedHour = localStorage.getItem("mustiBusStripHour");
-    let colours;
-
-    if (savedHour === hourKey) {
-      colours = JSON.parse(localStorage.getItem("mustiBusStripColours"));
-    } else {
-      colours = generateStripColours();
-
-      localStorage.setItem("mustiBusStripHour", hourKey);
-      localStorage.setItem("mustiBusStripColours", JSON.stringify(colours));
-    }
-
+    const colours = getSharedHourlyStripColours();
     const strips = document.querySelectorAll(".expiry-strip .strip");
 
-    strips[0].style.backgroundColor = colours[0];
-    strips[1].style.backgroundColor = colours[1];
-    strips[2].style.backgroundColor = colours[2];
+    strips.forEach((strip, index) => {
+      strip.style.backgroundColor = colours[index];
+    });
   }
 
   updateStripColours();
