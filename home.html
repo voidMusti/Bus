@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,9 +157,6 @@
       background: white;
       border: 1px solid #e0e0e0;
       border-radius: 12px;
-    }
-
-    .ticket-card {
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
       transition: background-color 0.12s ease;
     }
@@ -402,7 +400,8 @@
   </footer>
 
   <script>
-    // The same UK-hour colour set is calculated on every device.
+    // Generates a varied, deterministic palette for each UK hour.
+    // Keep this function identical in home.html and index.html.
     function getSharedHourlyStripColours() {
       const parts = new Intl.DateTimeFormat('en-GB', {
         timeZone: 'Europe/London',
@@ -413,19 +412,40 @@
         hourCycle: 'h23'
       }).formatToParts(new Date());
 
-      const part = type => parts.find(item => item.type === type).value;
+      const part = type =>
+        parts.find(item => item.type === type).value;
+
       const year = Number(part('year'));
       const month = Number(part('month'));
       const day = Number(part('day'));
       const hour = Number(part('hour'));
 
-      // A shared hourly number makes the palette deterministic across devices.
-      const hourNumber = Math.floor(Date.UTC(year, month - 1, day, hour) / 3600000);
-      const baseHue = ((hourNumber * 53) % 360 + 360) % 360;
-
-      return [0, 120, 240].map(offset =>
-        `hsl(${(baseHue + offset) % 360}, 75%, 48%)`
+      const hourNumber = Math.floor(
+        Date.UTC(year, month - 1, day, hour) / 3600000
       );
+
+      let seed = hourNumber >>> 0;
+
+      function random() {
+        seed = (seed + 0x6D2B79F5) >>> 0;
+
+        let value = seed;
+        value = Math.imul(value ^ (value >>> 15), value | 1);
+        value ^= value + Math.imul(
+          value ^ (value >>> 7),
+          value | 61
+        );
+
+        return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+      }
+
+      return [0, 1, 2].map(() => {
+        const hue = Math.floor(random() * 360);
+        const saturation = Math.floor(62 + random() * 34);
+        const lightness = Math.floor(38 + random() * 25);
+
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      });
     }
 
     function updateWalletStripColours() {
