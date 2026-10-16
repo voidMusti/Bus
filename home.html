@@ -9,8 +9,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <title>mTickets - Wallet</title>
   
-<link rel="manifest" href="manifest.json">
-
+  <link rel="manifest" href="manifest.json">
 
   <style>
     * { box-sizing: border-box; }
@@ -64,23 +63,23 @@
     }
 
     .profile {
-  position: absolute;
-  right: 16px;
-  bottom: 22px;
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  background: white;
-  color: #363636;
-}
+      position: absolute;
+      right: 16px;
+      bottom: 22px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: white;
+      color: #363636;
+    }
 
-.profile svg {
-  width: 22px;
-  height: 22px;
-  display: block;
-}
+    .profile svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
 
     .tabs {
       flex-shrink: 0;
@@ -185,11 +184,9 @@
       border-radius: 6px;
     }
 
-    
-.ticket-preview span {
-  flex: 1;
-}
-
+    .ticket-preview span {
+      flex: 1;
+    }
 
     .description {
       flex-shrink: 0;
@@ -308,27 +305,19 @@
     <h1>mTickets</h1>
 
     <div class="profile" aria-label="Profile">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
         <circle
-          cx="12"
-          cy="7"
-          r="3.2"
+          cx="24"
+          cy="15"
+          r="7"
           stroke="currentColor"
-          stroke-width="1.8"
+          stroke-width="3.2"
           fill="none"
         />
         <path
-          d="M5.5 20v-2.1a6.5 6.5 0 0 1 13 0V20z"
+          d="M7 39 C7 29, 15 27, 24 27 C33 27, 41 29, 41 39"
           stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          fill="none"
-        />
-        <path
-          d="M9.5 12.5 12 14l2.5-1.5"
-          stroke="currentColor"
-          stroke-width="1.5"
+          stroke-width="3.2"
           stroke-linecap="round"
           fill="none"
         />
@@ -408,49 +397,48 @@
     </div>
   </footer>
   
-<script>
-  function updateWalletStripColours() {
-    const now = new Date();
+  <script>
+    function updateWalletStripColours() {
+      const now = new Date();
 
-    const hourKey = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Europe/London',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      hour12: false
-    }).format(now);
+      const hourKey = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        hour12: false
+      }).format(now);
 
-    let colours = null;
+      let colours = null;
 
-    if (localStorage.getItem('mustiBusStripHour') === hourKey) {
-      try {
-        colours = JSON.parse(
-          localStorage.getItem('mustiBusStripColours')
-        );
-      } catch (error) {}
+      if (localStorage.getItem('mustiBusStripHour') === hourKey) {
+        try {
+          colours = JSON.parse(
+            localStorage.getItem('mustiBusStripColours')
+          );
+        } catch (error) {}
+      }
+
+      if (
+        !Array.isArray(colours) ||
+        colours.length !== 3 ||
+        !colours.every(c =>
+          typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c)
+        )
+      ) {
+        colours = ['#537DA9', '#FC48F0', '#904893'];
+      }
+
+      document.querySelectorAll('.ticket-preview span')
+        .forEach((strip, index) => {
+          strip.style.backgroundColor = colours[index];
+        });
     }
 
-    if (
-      !Array.isArray(colours) ||
-      colours.length !== 3 ||
-      !colours.every(c =>
-        typeof c === 'string' && /^#[0-9a-f]{6}$/i.test(c)
-      )
-    ) {
-      colours = ['#537DA9', '#FC48F0', '#904893'];
-    }
-
-    document.querySelectorAll('.ticket-preview span')
-      .forEach((strip, index) => {
-        strip.style.backgroundColor = colours[index];
-      });
-  }
-
-  updateWalletStripColours();
-  setInterval(updateWalletStripColours, 1000);
-  window.addEventListener('pageshow', updateWalletStripColours);
-</script>
-
+    updateWalletStripColours();
+    setInterval(updateWalletStripColours, 1000);
+    window.addEventListener('pageshow', updateWalletStripColours);
+  </script>
 </body>
 </html>
