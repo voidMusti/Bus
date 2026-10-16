@@ -160,9 +160,15 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .ticket-card:active {
-      background: #f6f6f6;
-    }
+    
+.ticket-card {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
+  transition: background-color 0.12s ease;
+}
+
+.ticket-card:active {
+  background: #e8e8e8;
+}
 
     .ticket-card h2 {
       margin: 0 0 7px;
