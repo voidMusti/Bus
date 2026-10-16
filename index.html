@@ -1,16 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-  <meta charset="UTF-8" />
+<head>
+  <meta charset="UTF-8">
   <meta name="color-scheme" content="light">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>mustiBus</title>
+
   <link rel="manifest" href="manifest.json">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <!-- mustiBus demo project - fictional recreation -->
+
   <style>
     * {
       margin: 0;
@@ -41,7 +45,7 @@
       margin: 0 12px;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 
+      box-shadow:
         0 5px 12px rgba(0, 0, 0, 0.17),
         0 2px 4px rgba(0, 0, 0, 0.10);
       position: relative;
@@ -53,7 +57,7 @@
       background: #fafafa;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
-      padding: 10px 12px;          
+      padding: 10px 12px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
@@ -80,7 +84,7 @@
       font-size: 16px;
       letter-spacing: 0.4px;
       color: white;
-      border-top-left-radius: 8px;   
+      border-top-left-radius: 8px;
       border-top-right-radius: 8px;
       position: relative;
       top: 8px;
@@ -109,7 +113,6 @@
       display: block;
     }
 
-    /* perfectly centered rings with thinner dot */
     #qrcode::after {
       content: "";
       position: absolute;
@@ -141,7 +144,7 @@
     .expiry-container {
       position: relative;
       height: 48px;
-      margin: 0 14px 0;
+      margin: 0 14px;
       border-radius: 8px 8px 0 0;
       overflow: hidden;
     }
@@ -166,20 +169,20 @@
       font-size: 22px;
       font-weight: 500;
       z-index: 2;
-      text-shadow: 
+      text-shadow:
         -1px -1px 0 #000,
         1px -1px 0 #000,
-        -1px  1px 0 #000,
-        1px  1px 0 #000,
-        0 0 3px rgba(0,0,0,0.9),
-        4px 4px 8px rgba(0,0,0,1);
+        -1px 1px 0 #000,
+        1px 1px 0 #000,
+        0 0 3px rgba(0, 0, 0, 0.9),
+        4px 4px 8px rgba(0, 0, 0, 1);
       white-space: nowrap;
       animation: sway 2.8s infinite ease-in-out;
     }
 
     @keyframes sway {
-      0%   { transform: translateX(-50px); }
-      50%  { transform: translateX(50px); }
+      0% { transform: translateX(-50px); }
+      50% { transform: translateX(50px); }
       100% { transform: translateX(-50px); }
     }
 
@@ -190,8 +193,8 @@
       font-size: 18px;
       text-align: center;
       padding: 6px 0;
-      margin: 0 14px 0;
-      border-radius: 0px;
+      margin: 0 14px;
+      border-radius: 0;
     }
 
     .logo-area {
@@ -205,33 +208,33 @@
 
     .logo-n {
       width: 90px;
-      height: 70px; 
+      height: 70px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       border-radius: 0 0 12px 12px;
-      background: rgba(255, 255, 255, 0.7); 
+      background: rgba(255, 255, 255, 0.7);
       clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
     }
 
     .logo-n::after {
       content: "";
       position: absolute;
-      inset: 6px; 
-      background: #5A3B63; 
+      inset: 6px;
+      background: #5A3B63;
       clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
       z-index: 1;
     }
 
     .logo-n span {
       position: relative;
-      font-size: 70px; 
+      font-size: 70px;
       font-weight: 600;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       letter-spacing: -2px;
-      color: rgba(255, 255, 255, 0.7); 
+      color: rgba(255, 255, 255, 0.7);
       z-index: 2;
       line-height: 1;
       display: block;
@@ -252,7 +255,7 @@
     .footer-bar {
       display: flex;
       justify-content: space-between;
-      padding: 10px 20px 16px 20px;
+      padding: 10px 20px 16px;
       align-items: center;
       font-size: 15px;
       color: #017FAF;
@@ -265,141 +268,167 @@
 </head>
 
 <body>
-
-<div class="ticket">
-  <div class="top-strip">
-    <div class="close" onclick="window.location.href='home.html'">Close</div>
-  </div>
-
-  <div class="header">
-    nBus - 1618 - Direct Issue nBus - 1618
-  </div>
-
-  <div class="qr-container">
-    <div id="qrcode"></div>
-  </div>
-
-  <div class="text">
-    Unlimited travel on all National Express buses and any other bus operator that is part of the nBus scheme within the West Midlands nBus zone
-  </div>
-
-  <div class="expiry-container">
-    <div class="expiry-strip">
-      <div class="strip"></div>
-      <div class="strip"></div>
-      <div class="strip"></div>
+  <div class="ticket">
+    <div class="top-strip">
+      <div class="close" onclick="window.location.href='home.html'">Close</div>
     </div>
-    <div class="expiry-time" id="expiry-time"></div>
-  </div>
 
-  <div class="verified">16-18 Verified ✓</div>
+    <div class="header">
+      nBus - 1618 - Direct Issue nBus - 1618
+    </div>
 
-  <div class="logo-area">
-    <div class="logo-n">
-      <span>n</span>
+    <div class="qr-container">
+      <div id="qrcode"></div>
+    </div>
+
+    <div class="text">
+      Unlimited travel on all National Express buses and any other bus operator that is part of the nBus scheme within the West Midlands nBus zone
+    </div>
+
+    <div class="expiry-container">
+      <div class="expiry-strip">
+        <div class="strip" style="background:#537DA9"></div>
+        <div class="strip" style="background:#FC48F0"></div>
+        <div class="strip" style="background:#904893"></div>
+      </div>
+      <div class="expiry-time" id="expiry-time"></div>
+    </div>
+
+    <div class="verified">16-18 Verified ✓</div>
+
+    <div class="logo-area">
+      <div class="logo-n">
+        <span>n</span>
+      </div>
+    </div>
+
+    <div class="cashback">NX Rewards Cashback</div>
+
+    <div class="footer-bar">
+      <span>… Actions</span>
+      <span>≣ Details</span>
     </div>
   </div>
 
-  <div class="cashback">NX Rewards Cashback</div>
+  <script>
+    function generateQRCode() {
+      const qrContainer = document.getElementById("qrcode");
+      qrContainer.innerHTML = "";
 
-  <div class="footer-bar">
-    <span>… Actions</span>
-    <span>≣ Details</span>
+      if (typeof QRCode === "undefined") {
+        qrContainer.textContent = "QR code unavailable";
+        return;
+      }
+
+      new QRCode(qrContainer, {
+        text: "nBus-1618-DirectIssue-nBus-1618-" + Date.now(),
+        width: 200,
+        height: 200,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    }
+
+    generateQRCode();
+    setInterval(generateQRCode, 2900);
+
+    // Keep this function identical to the one in home.html.
+    function getSharedHourlyStripColours() {
+      const parts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        hourCycle: 'h23'
+      }).formatToParts(new Date());
+
+      const part = type =>
+        parts.find(item => item.type === type).value;
+
+      const year = Number(part('year'));
+      const month = Number(part('month'));
+      const day = Number(part('day'));
+      const hour = Number(part('hour'));
+
+      const hourNumber = Math.floor(
+        Date.UTC(year, month - 1, day, hour) / 3600000
+      );
+
+      let seed = hourNumber >>> 0;
+
+      function random() {
+        seed = (seed + 0x6D2B79F5) >>> 0;
+
+        let value = seed;
+        value = Math.imul(value ^ (value >>> 15), value | 1);
+        value ^= value + Math.imul(
+          value ^ (value >>> 7),
+          value | 61
+        );
+
+        return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+      }
+
+      return [0, 1, 2].map(() => {
+        const hue = Math.floor(random() * 360);
+        const saturation = Math.floor(62 + random() * 34);
+        const lightness = Math.floor(38 + random() * 25);
+
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      });
+    }
+
+    function updateStripColours() {
+      const colours = getSharedHourlyStripColours();
+      const strips = document.querySelectorAll(".expiry-strip .strip");
+
+      strips.forEach((strip, index) => {
+        strip.style.backgroundColor = colours[index];
+      });
+    }
+
+    updateStripColours();
+    setInterval(updateStripColours, 1000);
+    window.addEventListener("pageshow", updateStripColours);
+
+    function updateExpiry() {
+      const now = new Date();
+
+      const timeStr = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London',
+        hour12: false,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }).format(now);
+
+      const dateStr = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Europe/London',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      }).format(now);
+
+      document.getElementById('expiry-time').textContent =
+        `${timeStr} ${dateStr}`;
+    }
+
+    updateExpiry();
+    setInterval(updateExpiry, 1000);
+  </script>
+
+  <div style="
+    position: fixed;
+    bottom: 3px;
+    left: 10px;
+    font-size: 9px;
+    color: #999;
+    opacity: 0.6;
+    user-select: none;
+  ">
+    UI Demo project
   </div>
-</div>
-
-<script>
-  function generateQRCode() {
-    const qrContainer = document.getElementById("qrcode");
-    qrContainer.innerHTML = "";
-
-    new QRCode(qrContainer, {
-      text: "nBus-1618-DirectIssue-nBus-1618-" + Date.now(),
-      width: 200,
-      height: 200,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  }
-
-  generateQRCode();
-  setInterval(generateQRCode, 2900);
-
-  // The same UK-hour colour set is calculated on every device.
-  function getSharedHourlyStripColours() {
-    const parts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Europe/London',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      hourCycle: 'h23'
-    }).formatToParts(new Date());
-
-    const part = type => parts.find(item => item.type === type).value;
-    const year = Number(part('year'));
-    const month = Number(part('month'));
-    const day = Number(part('day'));
-    const hour = Number(part('hour'));
-
-    // A shared hourly number makes the palette deterministic across devices.
-    const hourNumber = Math.floor(Date.UTC(year, month - 1, day, hour) / 3600000);
-    const baseHue = ((hourNumber * 53) % 360 + 360) % 360;
-
-    return [0, 120, 240].map(offset =>
-      `hsl(${(baseHue + offset) % 360}, 75%, 48%)`
-    );
-  }
-
-  function updateStripColours() {
-    const colours = getSharedHourlyStripColours();
-    const strips = document.querySelectorAll(".expiry-strip .strip");
-
-    strips.forEach((strip, index) => {
-      strip.style.backgroundColor = colours[index];
-    });
-  }
-
-  updateStripColours();
-  setInterval(updateStripColours, 1000);
-
-  function updateExpiry() {
-    const now = new Date();
-
-    const timeStr = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Europe/London',
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    }).format(now);
-
-    const dateStr = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Europe/London',
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
-    }).format(now);
-
-    document.getElementById('expiry-time').textContent = `${timeStr} ${dateStr}`;
-  }
-
-  updateExpiry();
-  setInterval(updateExpiry, 1000);
-</script>
-
-<div style="
-  position:fixed;
-  bottom:3px;
-  left:10px;
-  font-size:9px;
-  color:#999;
-  opacity:0.6;
-  user-select:none;
-">
-  UI Demo project
-</div>
-
 </body>
 </html>
