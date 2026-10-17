@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +10,10 @@
   <meta name="mobile-web-app-capable" content="yes">
   <title>mTickets - Wallet</title>
   <link rel="manifest" href="manifest.json">
+
   <style>
     * { box-sizing: border-box; }
+
     html {
       margin: 0;
       width: 100%;
@@ -18,6 +21,7 @@
       overflow-x: hidden;
       background: #eef5ff;
     }
+
     body {
       margin: 0;
       width: 100%;
@@ -31,6 +35,7 @@
       color: #363636;
       background: #eef5ff;
     }
+
     .header {
       height: 14vh;
       min-height: 95px;
@@ -49,12 +54,14 @@
         #55585c 100%
       );
     }
+
     .header h1 {
       margin: 0;
       font-size: clamp(30px, 8vw, 40px);
       font-weight: 800;
       line-height: 1;
     }
+
     .profile {
       position: absolute;
       right: 16px;
@@ -67,11 +74,13 @@
       background: white;
       color: #363636;
     }
+
     .profile svg {
       width: 28px;
       height: 28px;
       display: block;
     }
+
     .tabs {
       flex-shrink: 0;
       height: 10vh;
@@ -82,6 +91,7 @@
       margin: 0 22px;
       border-bottom: 1px solid #363636;
     }
+
     .tab {
       flex: 1;
       min-width: 0;
@@ -92,6 +102,7 @@
       font-weight: 750;
       white-space: nowrap;
     }
+
     .tab.active::after {
       content: "";
       position: absolute;
@@ -101,6 +112,7 @@
       height: 2px;
       background: #000;
     }
+
     .tab-icon {
       width: 24px;
       height: 24px;
@@ -108,6 +120,7 @@
       vertical-align: middle;
       margin-right: 5px;
     }
+
     .tab-icon svg {
       width: 100%;
       height: 100%;
@@ -118,6 +131,7 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
+
     .ticket-panel {
       flex: 1 1 0;
       min-height: 180px;
@@ -131,6 +145,7 @@
       background: white;
       border-radius: 18px;
     }
+
     .ticket-card {
       display: block;
       flex-shrink: 0;
@@ -144,20 +159,24 @@
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
       transition: background-color 0.12s ease;
     }
+
     .ticket-card:active {
       background: #e8e8e8;
     }
+
     .ticket-card h2 {
       margin: 0 0 7px;
       font-size: clamp(16px, 4.5vw, 19px);
       font-weight: 750;
     }
+
     .ticket-card p {
       margin: 0;
       color: #777;
       font-size: 13px;
       line-height: 1.35;
     }
+
     .ticket-preview {
       display: flex;
       height: 38px;
@@ -165,9 +184,11 @@
       overflow: hidden;
       border-radius: 6px;
     }
+
     .ticket-preview span {
       flex: 1;
     }
+
     .description {
       flex-shrink: 0;
       margin: 14px 0 0;
@@ -175,6 +196,7 @@
       font-size: clamp(14px, 4vw, 19px);
       line-height: 1.35;
     }
+
     .buy-button {
       flex-shrink: 0;
       margin: 0 16px 8px;
@@ -186,6 +208,7 @@
       font-size: clamp(17px, 5vw, 22px);
       font-weight: 750;
     }
+
     .bottom-nav {
       flex-shrink: 0;
       min-height: 68px;
@@ -196,6 +219,7 @@
       background: white;
       border-top: 1px solid #d8dfe8;
     }
+
     .nav-item {
       flex: 1;
       display: flex;
@@ -207,11 +231,13 @@
       font-weight: 650;
       font-size: 12px;
     }
+
     .nav-icon {
       width: 27px;
       height: 27px;
       display: block;
     }
+
     .nav-icon svg {
       width: 100%;
       height: 100%;
@@ -222,41 +248,51 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
+
     @media (max-height: 700px) {
       .header {
         min-height: 85px;
         padding-bottom: 15px;
       }
+
       .profile {
         bottom: 16px;
         width: 42px;
         height: 42px;
       }
+
       .tabs {
         min-height: 55px;
       }
+
       .ticket-panel {
         margin-top: 6px;
         margin-bottom: 6px;
         padding: 8px;
       }
+
       .ticket-card {
         padding: 10px;
       }
+
       .ticket-preview {
         height: 30px;
         margin-top: 8px;
       }
+
       .description {
         margin-top: 9px;
       }
+
       .buy-button {
         margin-bottom: 6px;
         padding: 10px 6px;
       }
+
       .bottom-nav {
         min-height: 60px;
       }
+
       .nav-icon {
         width: 24px;
         height: 24px;
@@ -264,9 +300,11 @@
     }
   </style>
 </head>
+
 <body>
   <header class="header">
     <h1>mTickets</h1>
+
     <div class="profile" aria-label="Profile">
       <svg viewBox="0 0 48 48" aria-hidden="true">
         <circle cx="24" cy="15" r="7"
@@ -277,6 +315,7 @@
       </svg>
     </div>
   </header>
+
   <nav class="tabs">
     <div class="tab active">
       <span class="tab-icon" aria-hidden="true">
@@ -288,6 +327,7 @@
       </span>
       Current tickets
     </div>
+
     <div class="tab">
       <span class="tab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24">
@@ -298,6 +338,7 @@
       Ticket history
     </div>
   </nav>
+
   <main class="ticket-panel">
     <a class="ticket-card" href="index.html">
       <h2>nBus - 1618 - Direct Issue</h2>
@@ -308,9 +349,12 @@
         <span></span>
       </div>
     </a>
+
     <p class="description">Tap your ticket above to view it.</p>
   </main>
+
   <div class="buy-button">Buy a new ticket</div>
+
   <footer class="bottom-nav">
     <div class="nav-item">
       <span class="nav-icon" aria-hidden="true">
@@ -323,6 +367,7 @@
       </span>
       <span>Wallet</span>
     </div>
+
     <div class="nav-item">
       <span class="nav-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24">
@@ -332,6 +377,7 @@
       </span>
       <span>Notifications</span>
     </div>
+
     <div class="nav-item">
       <span class="nav-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24">
@@ -341,60 +387,12 @@
       <span>Tools</span>
     </div>
   </footer>
+
   <script>
-    // Shared coordinated palettes. Keep identical in both HTML files.
+    // Shared hourly colour generator.
+    // Keep this function identical in home.html and index.html.
+
     function getSharedHourlyStripColours() {
-      const palettes = [
-        // Greys: neutral, not nearly black
-        ["#626873", "#858D98", "#B0B7C0"],
-        ["#747D88", "#A6AFBA", "#D0D5DC"],
-        ["#858D98", "#C3C9D1", "#747D88"],
-        ["#626873", "#929AA5", "#C3C9D1"],
-        // Icy blues
-        ["#579CCB", "#82CFFF", "#B6E3F9"],
-        ["#77BDE8", "#A9DDF7", "#D7F2FF"],
-        ["#397DB5", "#82CFFF", "#D7F2FF"],
-        ["#537DA9", "#77BDE8", "#B6E3F9"],
-        // Magenta and pink
-        ["#A51A78", "#D934A8", "#F052C5"],
-        ["#D934A8", "#F052C5", "#FF78D2"],
-        ["#A51A78", "#E4A3D1", "#F052C5"],
-        ["#C12B91", "#E65DBB", "#F6A6DD"],
-        // Purple family
-        ["#655078", "#904893", "#C9B4DE"],
-        ["#6A426B", "#904893", "#B7A0D4"],
-        ["#7C55A0", "#B7A0D4", "#D9C9EA"],
-        ["#655078", "#8E6CA5", "#B7A0D4"],
-        // Blues
-        ["#4056A1", "#397DB5", "#77BDE8"],
-        ["#397DB5", "#477DB3", "#A9DDF7"],
-        ["#4056A1", "#537DA9", "#82CFFF"],
-        ["#477DB3", "#579CCB", "#B6E3F9"],
-        // Reds, coral and orange
-        ["#D92745", "#E64B55", "#F18A35"],
-        ["#D94B75", "#E75D35", "#F2A23A"],
-        ["#D92745", "#D94B75", "#F0526B"],
-        ["#E64B55", "#F18A35", "#F2A23A"],
-        // Greens and teal
-        ["#278D83", "#398C79", "#5A9C9B"],
-        ["#468C55", "#48A36D", "#6AAE79"],
-        ["#278D83", "#5A9C9B", "#82C5BB"],
-        ["#398C79", "#48A36D", "#A1CFA5"],
-        // Yellow and gold
-        ["#C99B36", "#E0A52E", "#F0C879"],
-        ["#D9B44A", "#E5D06D", "#F3C542"],
-        ["#C99B36", "#E5D06D", "#F0C879"],
-        ["#E0A52E", "#F3C542", "#F7D98A"],
-        // Mixed but coordinated accent palettes
-        ["#626873", "#579CCB", "#82CFFF"],
-        ["#655078", "#A51A78", "#E4A3D1"],
-        ["#4056A1", "#477DB3", "#D7F2FF"],
-        ["#747D88", "#904893", "#C9B4DE"],
-        ["#278D83", "#579CCB", "#B6E3F9"],
-        ["#A51A78", "#D934A8", "#E4A3D1"],
-        ["#626873", "#A6AFBA", "#D7F2FF"],
-        ["#6A426B", "#7C55A0", "#D9C9EA"]
-      ];
       const parts = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Europe/London",
         year: "numeric",
@@ -403,30 +401,128 @@
         hour: "2-digit",
         hourCycle: "h23"
       }).formatToParts(new Date());
-      const getPart = type =>
-        parts.find(item => item.type === type).value;
-      const year = Number(getPart("year"));
-      const month = Number(getPart("month"));
-      const day = Number(getPart("day"));
-      const hour = Number(getPart("hour"));
+
+      const part = type => parts.find(item => item.type === type).value;
+
+      const year = Number(part("year"));
+      const month = Number(part("month"));
+      const day = Number(part("day"));
+      const hour = Number(part("hour"));
+
       const hourNumber = Math.floor(
         Date.UTC(year, month - 1, day, hour) / 3600000
       );
-      // Deterministic palette selection: both pages match each UK hour.
-      let seed = hourNumber >>> 0;
-      seed = (Math.imul(seed ^ (seed >>> 16), 0x45d9f3b)) >>> 0;
-      seed = (Math.imul(seed ^ (seed >>> 16), 0x45d9f3b)) >>> 0;
-      seed = (seed ^ (seed >>> 16)) >>> 0;
-      return palettes[seed % palettes.length].slice();
+
+      let seed = (hourNumber ^ 0x6D2B79F5) >>> 0;
+
+      function random() {
+        seed = (seed + 0x6D2B79F5) >>> 0;
+
+        let value = seed;
+        value = Math.imul(value ^ (value >>> 15), value | 1);
+        value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+
+        return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+      }
+
+      function between(min, max) {
+        return min + Math.floor(random() * (max - min + 1));
+      }
+
+      // Colour families. Each family has its own hue, saturation
+      // and brightness range so greys stay grey and icy blues stay icy.
+      const families = [
+        { name: "grey",       h: [205, 220], s: [8, 22],   l: [48, 78] },
+        { name: "icyBlue",    h: [188, 205], s: [45, 78],  l: [72, 89] },
+        { name: "blue",       h: [205, 225], s: [55, 88],  l: [38, 68] },
+        { name: "purple",     h: [258, 282], s: [48, 85],  l: [38, 72] },
+        { name: "magenta",    h: [310, 330], s: [58, 92],  l: [42, 72] },
+        { name: "pink",       h: [332, 350], s: [48, 88],  l: [58, 84] },
+        { name: "red",        h: [0, 9],     s: [58, 90],  l: [38, 65] },
+        { name: "orange",     h: [18, 35],   s: [62, 94],  l: [44, 70] },
+        { name: "yellow",     h: [43, 57],   s: [55, 92],  l: [67, 88] },
+        { name: "green",      h: [105, 140], s: [38, 78],  l: [32, 70] },
+        { name: "teal",       h: [165, 185], s: [42, 82],  l: [36, 70] }
+      ];
+
+      function makeColour(family, lightnessOverride) {
+        const hue = between(family.h[0], family.h[1]);
+        const saturation = between(family.s[0], family.s[1]);
+        const lightness = lightnessOverride === undefined
+          ? between(family.l[0], family.l[1])
+          : lightnessOverride;
+
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      }
+
+      // Most hours mix three different colour families.
+      // Some hours deliberately use related shades, such as
+      // dark green + light green + pale yellow.
+      const useRelatedColours = random() < 0.24;
+
+      if (useRelatedColours) {
+        const schemes = [
+          ["green", "green", "yellow"],
+          ["blue", "blue", "icyBlue"],
+          ["purple", "purple", "icyBlue"],
+          ["magenta", "pink", "purple"],
+          ["red", "pink", "orange"],
+          ["teal", "green", "icyBlue"],
+          ["orange", "yellow", "red"],
+          ["grey", "icyBlue", "blue"],
+          ["grey", "grey", "icyBlue"],
+          ["green", "teal", "yellow"],
+          ["pink", "magenta", "icyBlue"]
+        ];
+
+        const scheme = schemes[between(0, schemes.length - 1)];
+
+        return scheme.map((name, index) => {
+          const family = families.find(item => item.name === name);
+
+          // Encourage different lightness levels in related palettes.
+          const lightness = [
+            between(30, 48),
+            between(46, 68),
+            between(69, 88)
+          ][index];
+
+          return makeColour(family, lightness);
+        });
+      }
+
+      // Choose three different families for a proper mixed combination.
+      const chosen = [];
+
+      while (chosen.length < 3) {
+        const family = families[between(0, families.length - 1)];
+
+        if (!chosen.some(item => item.name === family.name)) {
+          chosen.push(family);
+        }
+      }
+
+      // Shuffle which family appears in each strip.
+      for (let i = chosen.length - 1; i > 0; i--) {
+        const j = between(0, i);
+        [chosen[i], chosen[j]] = [chosen[j], chosen[i]];
+      }
+
+      return chosen.map(family => makeColour(family));
     }
+
     function updateWalletStripColours() {
       const colours = getSharedHourlyStripColours();
+
       document.querySelectorAll(".ticket-preview span")
         .forEach((strip, index) => {
           strip.style.backgroundColor = colours[index];
         });
     }
+
     updateWalletStripColours();
+
+    // Refresh at the hour boundary without changing the design.
     setInterval(updateWalletStripColours, 1000);
     window.addEventListener("pageshow", updateWalletStripColours);
   </script>
