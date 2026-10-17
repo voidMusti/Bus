@@ -403,22 +403,22 @@
     // Generates a varied, deterministic palette for each UK hour.
     // Keep this function identical in home.html and index.html.
     function getSharedHourlyStripColours() {
-      const parts = new Intl.DateTimeFormat('en-GB', {
-        timeZone: 'Europe/London',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        hourCycle: 'h23'
+      const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Europe/London",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        hourCycle: "h23"
       }).formatToParts(new Date());
 
       const part = type =>
         parts.find(item => item.type === type).value;
 
-      const year = Number(part('year'));
-      const month = Number(part('month'));
-      const day = Number(part('day'));
-      const hour = Number(part('hour'));
+      const year = Number(part("year"));
+      const month = Number(part("month"));
+      const day = Number(part("day"));
+      const hour = Number(part("hour"));
 
       const hourNumber = Math.floor(
         Date.UTC(year, month - 1, day, hour) / 3600000
@@ -426,6 +426,7 @@
 
       let seed = hourNumber >>> 0;
 
+      // Seeded random numbers: same UK hour, same sequence.
       function random() {
         seed = (seed + 0x6D2B79F5) >>> 0;
 
@@ -439,13 +440,96 @@
         return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
       }
 
-      return [0, 1, 2].map(() => {
-        const hue = Math.floor(random() * 360);
-        const saturation = Math.floor(62 + random() * 34);
-        const lightness = Math.floor(38 + random() * 25);
+      // Convert HSL to RGB so colours can be compared.
+      function hslToRgb(h, s, l) {
+        h /= 360;
+        s /= 100;
+        l /= 100;
 
-        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-      });
+        const huePart = n => {
+          const k = (n + h * 12) % 12;
+          const a = s * Math.min(l, 1 - l);
+
+          return l - a * Math.max(
+            -1,
+            Math.min(k - 3, 9 - k, 1)
+          );
+        };
+
+        return [
+          Math.round(huePart(0) * 255),
+          Math.round(huePart(8) * 255),
+          Math.round(huePart(4) * 255)
+        ];
+      }
+
+      function colourDistance(a, b) {
+        const rgbA = hslToRgb(a.h, a.s, a.l);
+        const rgbB = hslToRgb(b.h, b.s, b.l);
+
+        return Math.sqrt(
+          (rgbA[0] - rgbB[0]) ** 2 +
+          (rgbA[1] - rgbB[1]) ** 2 +
+          (rgbA[2] - rgbB[2]) ** 2
+        );
+      }
+
+      const colours = [];
+      const minimumDistance = 100;
+
+      for (let i = 0; i < 3; i++) {
+        let chosen = null;
+
+        for (let attempt = 0; attempt < 1000; attempt++) {
+          const candidate = {
+            h: Math.floor(random() * 360),
+            s: Math.floor(55 + random() * 41),
+            l: Math.floor(32 + random() * 39)
+          };
+
+          const clearlyDifferent = colours.every(existing =>
+            colourDistance(candidate, existing) >= minimumDistance
+          );
+
+          if (clearlyDifferent) {
+            chosen = candidate;
+            break;
+          }
+        }
+
+        // Fallback also checks the distance rule.
+        if (!chosen) {
+          for (let attempt = 0; attempt < 360; attempt++) {
+            const candidate = {
+              h: (i * 137 + hourNumber * 53 + attempt) % 360,
+              s: 90,
+              l: [42, 52, 62][i]
+            };
+
+            if (colours.every(existing =>
+              colourDistance(candidate, existing) >= minimumDistance
+            )) {
+              chosen = candidate;
+              break;
+            }
+          }
+        }
+
+        // Very unlikely final fallback; still deterministic.
+        if (!chosen) {
+          chosen = {
+            h: (hourNumber * 53 + i * 120) % 360,
+            s: 95,
+            l: [35, 50, 65][i]
+          };
+        }
+
+        colours.push(chosen);
+      }
+
+      return colours.map(c =>
+        `hsl(${c.h}, ${c.s}%, ${c.l}%)`
+      );
     }
 
     function updateWalletStripColours() {
