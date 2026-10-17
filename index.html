@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +11,16 @@
   <title>mustiBus</title>
   <link rel="manifest" href="manifest.json">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <!-- mustiBus demo project - fictional recreation -->
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #fafafa;
@@ -32,6 +36,7 @@
       overflow-x: hidden;
       overflow-y: auto;
     }
+
     .ticket {
       width: 100%;
       max-width: 370px;
@@ -46,6 +51,7 @@
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
     }
+
     .top-strip {
       background: #fafafa;
       border-top-left-radius: 6px;
@@ -55,6 +61,7 @@
       justify-content: flex-end;
       align-items: center;
     }
+
     .top-strip .close {
       font-size: 17px;
       font-weight: 349;
@@ -67,6 +74,7 @@
       padding: 0;
       transform: translateX(2px);
     }
+
     .header {
       background: #a30b23;
       padding: 10px 4px;
@@ -81,6 +89,7 @@
       top: 8px;
       z-index: 2;
     }
+
     .qr-container {
       background: white;
       padding: 16px;
@@ -89,6 +98,7 @@
       height: 220px;
       border-radius: 16px;
     }
+
     #qrcode {
       width: 100% !important;
       height: 100% !important;
@@ -97,9 +107,11 @@
       align-items: center;
       justify-content: center;
     }
+
     #qrcode canvas {
       display: block;
     }
+
     #qrcode::after {
       content: "";
       position: absolute;
@@ -117,6 +129,7 @@
         0 0 0 20px white,
         0 0 0 24px black;
     }
+
     .text {
       font-size: 15px;
       line-height: 1.2;
@@ -126,6 +139,7 @@
       font-weight: 580;
       letter-spacing: 0.04px;
     }
+
     .expiry-container {
       position: relative;
       height: 48px;
@@ -133,14 +147,17 @@
       border-radius: 8px 8px 0 0;
       overflow: hidden;
     }
+
     .expiry-strip {
       position: absolute;
       inset: 0;
       display: flex;
     }
+
     .strip {
       flex: 1;
     }
+
     .expiry-time {
       position: absolute;
       inset: 0;
@@ -161,11 +178,13 @@
       white-space: nowrap;
       animation: sway 2.8s infinite ease-in-out;
     }
+
     @keyframes sway {
-      0% { transform: translateX(-50px); }
-      50% { transform: translateX(50px); }
+      0%   { transform: translateX(-50px); }
+      50%  { transform: translateX(50px); }
       100% { transform: translateX(-50px); }
     }
+
     .verified {
       background: #ffe74c;
       color: black;
@@ -176,6 +195,7 @@
       margin: 0 14px;
       border-radius: 0;
     }
+
     .logo-area {
       padding: 18px 20px 16px;
       text-align: center;
@@ -184,6 +204,7 @@
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
     }
+
     .logo-n {
       width: 90px;
       height: 70px;
@@ -194,16 +215,24 @@
       position: relative;
       border-radius: 0 0 12px 12px;
       background: rgba(255, 255, 255, 0.7);
-      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      clip-path: polygon(
+        25% 0%, 75% 0%, 100% 50%,
+        75% 100%, 25% 100%, 0% 50%
+      );
     }
+
     .logo-n::after {
       content: "";
       position: absolute;
       inset: 6px;
       background: #5A3B63;
-      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      clip-path: polygon(
+        25% 0%, 75% 0%, 100% 50%,
+        75% 100%, 25% 100%, 0% 50%
+      );
       z-index: 1;
     }
+
     .logo-n span {
       position: relative;
       font-size: 70px;
@@ -217,6 +246,7 @@
       margin-top: -10px;
       transform: scaleY(0.9);
     }
+
     .cashback {
       background: #017FAF;
       color: white;
@@ -226,6 +256,7 @@
       font-size: 18px;
       margin: 8px 14px 60px;
     }
+
     .footer-bar {
       display: flex;
       justify-content: space-between;
@@ -240,20 +271,26 @@
     }
   </style>
 </head>
+
 <body>
   <div class="ticket">
     <div class="top-strip">
       <div class="close" onclick="window.location.href='home.html'">Close</div>
     </div>
+
     <div class="header">
       nBus - 1618 - Direct Issue nBus - 1618
     </div>
+
     <div class="qr-container">
       <div id="qrcode"></div>
     </div>
+
     <div class="text">
-      Unlimited travel on all National Express buses and any other bus operator that is part of the nBus scheme within the West Midlands nBus zone
+      Unlimited travel on all National Express buses and any other bus operator
+      that is part of the nBus scheme within the West Midlands nBus zone
     </div>
+
     <div class="expiry-container">
       <div class="expiry-strip">
         <div class="strip"></div>
@@ -262,26 +299,28 @@
       </div>
       <div class="expiry-time" id="expiry-time"></div>
     </div>
+
     <div class="verified">16-18 Verified ✓</div>
+
     <div class="logo-area">
       <div class="logo-n">
         <span>n</span>
       </div>
     </div>
+
     <div class="cashback">NX Rewards Cashback</div>
+
     <div class="footer-bar">
       <span>… Actions</span>
       <span>≣ Details</span>
     </div>
   </div>
+
   <script>
     function generateQRCode() {
       const qrContainer = document.getElementById("qrcode");
       qrContainer.innerHTML = "";
-      if (typeof QRCode === "undefined") {
-        qrContainer.textContent = "QR code unavailable";
-        return;
-      }
+
       new QRCode(qrContainer, {
         text: "nBus-1618-DirectIssue-nBus-1618-" + Date.now(),
         width: 200,
@@ -291,52 +330,14 @@
         correctLevel: QRCode.CorrectLevel.H
       });
     }
+
     generateQRCode();
     setInterval(generateQRCode, 2900);
-    // Shared coordinated palettes. Keep identical in both HTML files.
+
+    // Shared hourly colour generator.
+    // This must remain identical to the version in home.html.
+
     function getSharedHourlyStripColours() {
-      const palettes = [
-        ["#626873", "#858D98", "#B0B7C0"],
-        ["#747D88", "#A6AFBA", "#D0D5DC"],
-        ["#858D98", "#C3C9D1", "#747D88"],
-        ["#626873", "#929AA5", "#C3C9D1"],
-        ["#579CCB", "#82CFFF", "#B6E3F9"],
-        ["#77BDE8", "#A9DDF7", "#D7F2FF"],
-        ["#397DB5", "#82CFFF", "#D7F2FF"],
-        ["#537DA9", "#77BDE8", "#B6E3F9"],
-        ["#A51A78", "#D934A8", "#F052C5"],
-        ["#D934A8", "#F052C5", "#FF78D2"],
-        ["#A51A78", "#E4A3D1", "#F052C5"],
-        ["#C12B91", "#E65DBB", "#F6A6DD"],
-        ["#655078", "#904893", "#C9B4DE"],
-        ["#6A426B", "#904893", "#B7A0D4"],
-        ["#7C55A0", "#B7A0D4", "#D9C9EA"],
-        ["#655078", "#8E6CA5", "#B7A0D4"],
-        ["#4056A1", "#397DB5", "#77BDE8"],
-        ["#397DB5", "#477DB3", "#A9DDF7"],
-        ["#4056A1", "#537DA9", "#82CFFF"],
-        ["#477DB3", "#579CCB", "#B6E3F9"],
-        ["#D92745", "#E64B55", "#F18A35"],
-        ["#D94B75", "#E75D35", "#F2A23A"],
-        ["#D92745", "#D94B75", "#F0526B"],
-        ["#E64B55", "#F18A35", "#F2A23A"],
-        ["#278D83", "#398C79", "#5A9C9B"],
-        ["#468C55", "#48A36D", "#6AAE79"],
-        ["#278D83", "#5A9C9B", "#82C5BB"],
-        ["#398C79", "#48A36D", "#A1CFA5"],
-        ["#C99B36", "#E0A52E", "#F0C879"],
-        ["#D9B44A", "#E5D06D", "#F3C542"],
-        ["#C99B36", "#E5D06D", "#F0C879"],
-        ["#E0A52E", "#F3C542", "#F7D98A"],
-        ["#626873", "#579CCB", "#82CFFF"],
-        ["#655078", "#A51A78", "#E4A3D1"],
-        ["#4056A1", "#477DB3", "#D7F2FF"],
-        ["#747D88", "#904893", "#C9B4DE"],
-        ["#278D83", "#579CCB", "#B6E3F9"],
-        ["#A51A78", "#D934A8", "#E4A3D1"],
-        ["#626873", "#A6AFBA", "#D7F2FF"],
-        ["#6A426B", "#7C55A0", "#D9C9EA"]
-      ];
       const parts = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Europe/London",
         year: "numeric",
@@ -345,33 +346,124 @@
         hour: "2-digit",
         hourCycle: "h23"
       }).formatToParts(new Date());
-      const getPart = type =>
-        parts.find(item => item.type === type).value;
-      const year = Number(getPart("year"));
-      const month = Number(getPart("month"));
-      const day = Number(getPart("day"));
-      const hour = Number(getPart("hour"));
+
+      const part = type => parts.find(item => item.type === type).value;
+
+      const year = Number(part("year"));
+      const month = Number(part("month"));
+      const day = Number(part("day"));
+      const hour = Number(part("hour"));
+
       const hourNumber = Math.floor(
         Date.UTC(year, month - 1, day, hour) / 3600000
       );
-      let seed = hourNumber >>> 0;
-      seed = (Math.imul(seed ^ (seed >>> 16), 0x45d9f3b)) >>> 0;
-      seed = (Math.imul(seed ^ (seed >>> 16), 0x45d9f3b)) >>> 0;
-      seed = (seed ^ (seed >>> 16)) >>> 0;
-      return palettes[seed % palettes.length].slice();
+
+      let seed = (hourNumber ^ 0x6D2B79F5) >>> 0;
+
+      function random() {
+        seed = (seed + 0x6D2B79F5) >>> 0;
+
+        let value = seed;
+        value = Math.imul(value ^ (value >>> 15), value | 1);
+        value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+
+        return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+      }
+
+      function between(min, max) {
+        return min + Math.floor(random() * (max - min + 1));
+      }
+
+      const families = [
+        { name: "grey",       h: [205, 220], s: [8, 22],   l: [48, 78] },
+        { name: "icyBlue",    h: [188, 205], s: [45, 78],  l: [72, 89] },
+        { name: "blue",       h: [205, 225], s: [55, 88],  l: [38, 68] },
+        { name: "purple",     h: [258, 282], s: [48, 85],  l: [38, 72] },
+        { name: "magenta",    h: [310, 330], s: [58, 92],  l: [42, 72] },
+        { name: "pink",       h: [332, 350], s: [48, 88],  l: [58, 84] },
+        { name: "red",        h: [0, 9],     s: [58, 90],  l: [38, 65] },
+        { name: "orange",     h: [18, 35],   s: [62, 94],  l: [44, 70] },
+        { name: "yellow",     h: [43, 57],   s: [55, 92],  l: [67, 88] },
+        { name: "green",      h: [105, 140], s: [38, 78],  l: [32, 70] },
+        { name: "teal",       h: [165, 185], s: [42, 82],  l: [36, 70] }
+      ];
+
+      function makeColour(family, lightnessOverride) {
+        const hue = between(family.h[0], family.h[1]);
+        const saturation = between(family.s[0], family.s[1]);
+        const lightness = lightnessOverride === undefined
+          ? between(family.l[0], family.l[1])
+          : lightnessOverride;
+
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+      }
+
+      const useRelatedColours = random() < 0.24;
+
+      if (useRelatedColours) {
+        const schemes = [
+          ["green", "green", "yellow"],
+          ["blue", "blue", "icyBlue"],
+          ["purple", "purple", "icyBlue"],
+          ["magenta", "pink", "purple"],
+          ["red", "pink", "orange"],
+          ["teal", "green", "icyBlue"],
+          ["orange", "yellow", "red"],
+          ["grey", "icyBlue", "blue"],
+          ["grey", "grey", "icyBlue"],
+          ["green", "teal", "yellow"],
+          ["pink", "magenta", "icyBlue"]
+        ];
+
+        const scheme = schemes[between(0, schemes.length - 1)];
+
+        return scheme.map((name, index) => {
+          const family = families.find(item => item.name === name);
+
+          const lightness = [
+            between(30, 48),
+            between(46, 68),
+            between(69, 88)
+          ][index];
+
+          return makeColour(family, lightness);
+        });
+      }
+
+      const chosen = [];
+
+      while (chosen.length < 3) {
+        const family = families[between(0, families.length - 1)];
+
+        if (!chosen.some(item => item.name === family.name)) {
+          chosen.push(family);
+        }
+      }
+
+      for (let i = chosen.length - 1; i > 0; i--) {
+        const j = between(0, i);
+        [chosen[i], chosen[j]] = [chosen[j], chosen[i]];
+      }
+
+      return chosen.map(family => makeColour(family));
     }
+
     function updateStripColours() {
       const colours = getSharedHourlyStripColours();
-      const strips = document.querySelectorAll(".expiry-strip .strip");
-      strips.forEach((strip, index) => {
-        strip.style.backgroundColor = colours[index];
-      });
+
+      document.querySelectorAll(".expiry-strip .strip")
+        .forEach((strip, index) => {
+          strip.style.backgroundColor = colours[index];
+        });
     }
+
     updateStripColours();
     setInterval(updateStripColours, 1000);
     window.addEventListener("pageshow", updateStripColours);
+
     function updateExpiry() {
       const now = new Date();
+
       const timeStr = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Europe/London",
         hour12: false,
@@ -379,18 +471,22 @@
         minute: "2-digit",
         second: "2-digit"
       }).format(now);
+
       const dateStr = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Europe/London",
         day: "2-digit",
         month: "2-digit",
         year: "numeric"
       }).format(now);
+
       document.getElementById("expiry-time").textContent =
         `${timeStr} ${dateStr}`;
     }
+
     updateExpiry();
     setInterval(updateExpiry, 1000);
   </script>
+
   <div style="
     position: fixed;
     bottom: 3px;
