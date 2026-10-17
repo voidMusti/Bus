@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,15 +9,19 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <title>mustiBus</title>
+
   <link rel="manifest" href="manifest.json">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <!-- mustiBus demo project - fictional recreation -->
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #fafafa;
@@ -32,6 +37,7 @@
       overflow-x: hidden;
       overflow-y: auto;
     }
+
     .ticket {
       width: 100%;
       max-width: 370px;
@@ -46,6 +52,7 @@
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
     }
+
     .top-strip {
       background: #fafafa;
       border-top-left-radius: 6px;
@@ -55,6 +62,7 @@
       justify-content: flex-end;
       align-items: center;
     }
+
     .top-strip .close {
       font-size: 17px;
       font-weight: 349;
@@ -67,6 +75,7 @@
       padding: 0;
       transform: translateX(2px);
     }
+
     .header {
       background: #a30b23;
       padding: 10px 4px;
@@ -81,6 +90,7 @@
       top: 8px;
       z-index: 2;
     }
+
     .qr-container {
       background: white;
       padding: 16px;
@@ -89,6 +99,7 @@
       height: 220px;
       border-radius: 16px;
     }
+
     #qrcode {
       width: 100% !important;
       height: 100% !important;
@@ -97,9 +108,11 @@
       align-items: center;
       justify-content: center;
     }
+
     #qrcode canvas {
       display: block;
     }
+
     #qrcode::after {
       content: "";
       position: absolute;
@@ -117,6 +130,7 @@
         0 0 0 20px white,
         0 0 0 24px black;
     }
+
     .text {
       font-size: 15px;
       line-height: 1.2;
@@ -126,6 +140,7 @@
       font-weight: 580;
       letter-spacing: 0.04px;
     }
+
     .expiry-container {
       position: relative;
       height: 48px;
@@ -133,14 +148,17 @@
       border-radius: 8px 8px 0 0;
       overflow: hidden;
     }
+
     .expiry-strip {
       position: absolute;
       inset: 0;
       display: flex;
     }
+
     .strip {
       flex: 1;
     }
+
     .expiry-time {
       position: absolute;
       inset: 0;
@@ -161,11 +179,13 @@
       white-space: nowrap;
       animation: sway 2.8s infinite ease-in-out;
     }
+
     @keyframes sway {
       0% { transform: translateX(-50px); }
       50% { transform: translateX(50px); }
       100% { transform: translateX(-50px); }
     }
+
     .verified {
       background: #ffe74c;
       color: black;
@@ -176,6 +196,7 @@
       margin: 0 14px;
       border-radius: 0;
     }
+
     .logo-area {
       padding: 18px 20px 16px;
       text-align: center;
@@ -184,6 +205,7 @@
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
     }
+
     .logo-n {
       width: 90px;
       height: 70px;
@@ -196,6 +218,7 @@
       background: rgba(255, 255, 255, 0.7);
       clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
     }
+
     .logo-n::after {
       content: "";
       position: absolute;
@@ -204,6 +227,7 @@
       clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
       z-index: 1;
     }
+
     .logo-n span {
       position: relative;
       font-size: 70px;
@@ -217,6 +241,7 @@
       margin-top: -10px;
       transform: scaleY(0.9);
     }
+
     .cashback {
       background: #017FAF;
       color: white;
@@ -226,6 +251,7 @@
       font-size: 18px;
       margin: 8px 14px 60px;
     }
+
     .footer-bar {
       display: flex;
       justify-content: space-between;
@@ -240,48 +266,60 @@
     }
   </style>
 </head>
+
 <body>
   <div class="ticket">
     <div class="top-strip">
       <div class="close" onclick="window.location.href='home.html'">Close</div>
     </div>
-<div class="header">
-  nBus - 1618 - Direct Issue nBus - 1618
-</div>
-<div class="qr-container">
-  <div id="qrcode"></div>
-</div>
-<div class="text">
-  Unlimited travel on all National Express buses and any other bus operator that is part of the nBus scheme within the West Midlands nBus zone
-</div>
-<div class="expiry-container">
-  <div class="expiry-strip">
-    <div class="strip" style="background:#537DA9"></div>
-    <div class="strip" style="background:#FC48F0"></div>
-    <div class="strip" style="background:#904893"></div>
+
+    <div class="header">
+      nBus - 1618 - Direct Issue nBus - 1618
+    </div>
+
+    <div class="qr-container">
+      <div id="qrcode"></div>
+    </div>
+
+    <div class="text">
+      Unlimited travel on all National Express buses and any other bus operator that is part of the nBus scheme within the West Midlands nBus zone
+    </div>
+
+    <div class="expiry-container">
+      <div class="expiry-strip">
+        <div class="strip" style="background:#537DA9"></div>
+        <div class="strip" style="background:#FC48F0"></div>
+        <div class="strip" style="background:#904893"></div>
+      </div>
+      <div class="expiry-time" id="expiry-time"></div>
+    </div>
+
+    <div class="verified">16-18 Verified ✓</div>
+
+    <div class="logo-area">
+      <div class="logo-n">
+        <span>n</span>
+      </div>
+    </div>
+
+    <div class="cashback">NX Rewards Cashback</div>
+
+    <div class="footer-bar">
+      <span>… Actions</span>
+      <span>≣ Details</span>
+    </div>
   </div>
-  <div class="expiry-time" id="expiry-time"></div>
-</div>
-<div class="verified">16-18 Verified ✓</div>
-<div class="logo-area">
-  <div class="logo-n">
-    <span>n</span>
-  </div>
-</div>
-<div class="cashback">NX Rewards Cashback</div>
-<div class="footer-bar">
-  <span>… Actions</span>
-  <span>≣ Details</span>
-</div>
-  </div>
+
   <script>
     function generateQRCode() {
       const qrContainer = document.getElementById("qrcode");
       qrContainer.innerHTML = "";
+
       if (typeof QRCode === "undefined") {
         qrContainer.textContent = "QR code unavailable";
         return;
       }
+
       new QRCode(qrContainer, {
         text: "nBus-1618-DirectIssue-nBus-1618-" + Date.now(),
         width: 200,
@@ -291,8 +329,10 @@
         correctLevel: QRCode.CorrectLevel.H
       });
     }
+
     generateQRCode();
     setInterval(generateQRCode, 2900);
+
     // Keep this function identical to the one in home.html.
     function getSharedHourlyStripColours() {
       const parts = new Intl.DateTimeFormat("en-GB", {
@@ -303,95 +343,144 @@
         hour: "2-digit",
         hourCycle: "h23"
       }).formatToParts(new Date());
+
       const part = type =>
         parts.find(item => item.type === type).value;
+
       const year = Number(part("year"));
       const month = Number(part("month"));
       const day = Number(part("day"));
       const hour = Number(part("hour"));
+
       const hourNumber = Math.floor(
         Date.UTC(year, month - 1, day, hour) / 3600000
       );
+
       let seed = hourNumber >>> 0;
+
+      // Seeded random numbers: same UK hour, same sequence.
       function random() {
         seed = (seed + 0x6D2B79F5) >>> 0;
+
         let value = seed;
         value = Math.imul(value ^ (value >>> 15), value | 1);
         value ^= value + Math.imul(
           value ^ (value >>> 7),
           value | 61
         );
+
         return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
       }
-      // Familiar colours, distinctive shades and softer colours.
-      const palette = [
-        // Familiar colours
-        "#D92745", "#397DB5", "#F18A35", "#7C55A0",
-        "#D94B75", "#278D83", "#E0A52E", "#4056A1",
-        "#E75D35", "#468C55", "#B94A86", "#398DAA",
-        // Distinctive, richer shades
-        "#512B36", "#343B55", "#4C354F", "#31534A",
-        "#A86F79", "#718C9D", "#B77E63", "#817A91",
-        "#344D67", "#795044", "#655078", "#536B58",
-        // Softer and lighter shades
-        "#B9CEDB", "#E4BFA9", "#D9B9C7", "#C9C5B9",
-        "#A9C6B4", "#D8C5E5", "#E5D0A8", "#B7C7D8"
-      ];
-      // Shuffle deterministically for this UK hour.
-      const shuffled = [...palette];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      function hexToRgb(hex) {
+
+      // Convert HSL to RGB for colour comparison.
+      function hslToRgb(h, s, l) {
+        h /= 360;
+        s /= 100;
+        l /= 100;
+
+        const huePart = n => {
+          const k = (n + h * 12) % 12;
+          const a = s * Math.min(l, 1 - l);
+
+          return l - a * Math.max(
+            -1,
+            Math.min(k - 3, 9 - k, 1)
+          );
+        };
+
         return [
-          parseInt(hex.slice(1, 3), 16),
-          parseInt(hex.slice(3, 5), 16),
-          parseInt(hex.slice(5, 7), 16)
+          Math.round(huePart(0) * 255),
+          Math.round(huePart(8) * 255),
+          Math.round(huePart(4) * 255)
         ];
       }
-      function distance(a, b) {
-        const A = hexToRgb(a);
-        const B = hexToRgb(b);
+
+      function colourDistance(a, b) {
+        const rgbA = hslToRgb(a.h, a.s, a.l);
+        const rgbB = hslToRgb(b.h, b.s, b.l);
+
         return Math.sqrt(
-          (A[0] - B[0]) ** 2 +
-          (A[1] - B[1]) ** 2 +
-          (A[2] - B[2]) ** 2
+          (rgbA[0] - rgbB[0]) ** 2 +
+          (rgbA[1] - rgbB[1]) ** 2 +
+          (rgbA[2] - rgbB[2]) ** 2
         );
       }
-      const selected = [];
-      const minimumDistance = 65;
-      for (const colour of shuffled) {
-        if (
-          selected.every(existing =>
-            distance(colour, existing) >= minimumDistance
-          )
-        ) {
-          selected.push(colour);
+
+      const colours = [];
+      const minimumDistance = 100;
+
+      for (let i = 0; i < 3; i++) {
+        let chosen = null;
+
+        // Try a large range of colours before accepting one.
+        for (let attempt = 0; attempt < 1000; attempt++) {
+          const candidate = {
+            h: Math.floor(random() * 360),
+            s: Math.floor(55 + random() * 41),
+            l: Math.floor(32 + random() * 39)
+          };
+
+          const clearlyDifferent = colours.every(existing =>
+            colourDistance(candidate, existing) >= minimumDistance
+          );
+
+          if (clearlyDifferent) {
+            chosen = candidate;
+            break;
+          }
         }
-        if (selected.length === 3) break;
-      }
-      // Deterministic fallback if needed.
-      for (const colour of shuffled) {
-        if (selected.length === 3) break;
-        if (!selected.includes(colour)) {
-          selected.push(colour);
+
+        // Deterministic fallback, also checked against existing colours.
+        if (!chosen) {
+          for (let attempt = 0; attempt < 360; attempt++) {
+            const candidate = {
+              h: (i * 137 + hourNumber * 53 + attempt) % 360,
+              s: 90,
+              l: [42, 52, 62][i]
+            };
+
+            if (colours.every(existing =>
+              colourDistance(candidate, existing) >= minimumDistance
+            )) {
+              chosen = candidate;
+              break;
+            }
+          }
         }
+
+        // Final deterministic fallback if no candidate passes.
+        if (!chosen) {
+          chosen = {
+            h: (hourNumber * 53 + i * 120) % 360,
+            s: 95,
+            l: [35, 50, 65][i]
+          };
+        }
+
+        colours.push(chosen);
       }
-      return selected;
+
+      return colours.map(c =>
+        `hsl(${c.h}, ${c.s}%, ${c.l}%)`
+      );
     }
+
     function updateStripColours() {
       const colours = getSharedHourlyStripColours();
       const strips = document.querySelectorAll(".expiry-strip .strip");
+
       strips.forEach((strip, index) => {
         strip.style.backgroundColor = colours[index];
       });
     }
+
     updateStripColours();
     setInterval(updateStripColours, 1000);
     window.addEventListener("pageshow", updateStripColours);
+
     function updateExpiry() {
       const now = new Date();
+
       const timeStr = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Europe/London",
         hour12: false,
@@ -399,18 +488,22 @@
         minute: "2-digit",
         second: "2-digit"
       }).format(now);
+
       const dateStr = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Europe/London",
         day: "2-digit",
         month: "2-digit",
         year: "numeric"
       }).format(now);
+
       document.getElementById("expiry-time").textContent =
         `${timeStr} ${dateStr}`;
     }
+
     updateExpiry();
     setInterval(updateExpiry, 1000);
   </script>
+
   <div style="
     position: fixed;
     bottom: 3px;
