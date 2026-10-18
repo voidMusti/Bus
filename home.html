@@ -84,6 +84,62 @@
       display: block;
     }
 
+    /* ACCOUNT BALANCE */
+    .account-balance {
+      flex-shrink: 0;
+      margin: 18px 16px 8px;
+      padding: 27px 24px;
+      min-height: 164px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .balance-label {
+      margin: 0 0 12px;
+      color: #363636;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .balance-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .balance-amount {
+      color: #363636;
+      font-size: clamp(32px, 9vw, 40px);
+      font-weight: 800;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .add-funds-button {
+      flex-shrink: 0;
+      padding: 13px 19px;
+      border: 2px solid #ed0030;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #363636;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 750;
+      white-space: nowrap;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .add-funds-button:active {
+      background: #fff5f6;
+    }
+
     /* TABS */
     .tabs {
       flex-shrink: 0;
@@ -233,11 +289,11 @@
 
     /* DIVIDER AT THE EDGE OF THE EXPIRY SECTION */
     .ticket-divider {
-  display: block;
-  height: 1px;
-  margin: 14px 0 16px;
-  background: transparent;
-}
+      display: block;
+      height: 1px;
+      margin: 14px 0 16px;
+      background: transparent;
+    }
 
     .expiry-row {
       display: flex;
@@ -287,6 +343,7 @@
       border: none;
       border-radius: 0;
       background: transparent;
+      color: #000000;
       text-align: center;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
@@ -310,7 +367,7 @@
       border: 1px solid #ed0030;
       border-radius: 24px;
       background: transparent;
-      color: #ed0030;
+      color: #000000;
       font-size: 14px;
       font-weight: 750;
     }
@@ -424,6 +481,20 @@
         height: 42px;
       }
 
+      .account-balance {
+        min-height: 140px;
+        margin-top: 12px;
+        padding: 20px;
+      }
+
+      .balance-amount {
+        font-size: clamp(30px, 8vw, 36px);
+      }
+
+      .add-funds-button {
+        padding: 11px 15px;
+      }
+
       .tabs {
         min-height: 55px;
       }
@@ -467,6 +538,25 @@
         height: 23px;
       }
     }
+
+    @media (max-width: 360px) {
+      .account-balance {
+        padding: 22px 18px;
+      }
+
+      .balance-row {
+        gap: 6px;
+      }
+
+      .balance-amount {
+        font-size: 30px;
+      }
+
+      .add-funds-button {
+        padding: 11px 12px;
+        font-size: 14px;
+      }
+    }
   </style>
 </head>
 
@@ -484,6 +574,19 @@
       </svg>
     </div>
   </header>
+
+  <!-- ACCOUNT BALANCE -->
+  <section class="account-balance" aria-label="Account balance">
+    <p class="balance-label">Account balance</p>
+
+    <div class="balance-row">
+      <span class="balance-amount">£0.00</span>
+
+      <button class="add-funds-button" id="addFundsButton" type="button">
+        Add funds
+      </button>
+    </div>
+  </section>
 
   <!-- CURRENT TICKETS / TICKET HISTORY -->
   <nav class="tabs" aria-label="Ticket sections">
@@ -695,9 +798,12 @@
       }, 1400);
     });
 
-    
-    
-    
+    // Demo Add funds interaction.
+    // This button does not process real payments.
+    document.getElementById("addFundsButton").addEventListener("click", function () {
+      // No payment action is connected yet.
+    });
+
     // Secret message interaction.
     document.getElementById("buyButton").addEventListener("click", function () {
       // Prevent duplicate popups.
@@ -834,7 +940,6 @@
 
       document.addEventListener("keydown", handleEscape);
     });
-
   </script>
 </body>
 </html>
