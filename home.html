@@ -87,19 +87,20 @@
     /* ACCOUNT BALANCE */
     .account-balance {
       flex-shrink: 0;
-      margin: 18px 16px 8px;
-      padding: 27px 24px;
-      min-height: 164px;
+      margin: 16px 16px 6px;
+      padding: 22px 24px;
+      min-height: 148px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       background: #ffffff;
-      border-radius: 22px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
     }
 
     .balance-label {
-      margin: 0 0 12px;
+      margin: 0 0 10px;
       color: #363636;
       font-size: 16px;
       font-weight: 400;
@@ -110,7 +111,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 12px;
     }
 
     .balance-amount {
@@ -123,7 +124,8 @@
 
     .add-funds-button {
       flex-shrink: 0;
-      padding: 13px 19px;
+      min-width: 126px;
+      padding: 12px 17px;
       border: 2px solid #ed0030;
       border-radius: 999px;
       background: #ffffff;
@@ -362,24 +364,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      padding: 8px 16px;
-      border: 1px solid #ed0030;
-      border-radius: 24px;
-      background: transparent;
-      color: #000000;
+      min-width: 190px;
+      padding: 10px 20px;
+      border: 2px solid #ed0030;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #363636;
       font-size: 14px;
       font-weight: 750;
-    }
-
-    .refresh-action svg {
-      width: 15px;
-      height: 15px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      line-height: 1.2;
     }
 
     .refresh-wallet:active {
@@ -482,9 +475,9 @@
       }
 
       .account-balance {
-        min-height: 140px;
+        min-height: 132px;
         margin-top: 12px;
-        padding: 20px;
+        padding: 18px 20px;
       }
 
       .balance-amount {
@@ -521,7 +514,7 @@
       }
 
       .refresh-action {
-        padding: 8px 16px;
+        padding: 10px 20px;
       }
 
       .buy-button {
@@ -554,7 +547,12 @@
 
       .add-funds-button {
         padding: 11px 12px;
+        min-width: 0;
         font-size: 14px;
+      }
+
+      .refresh-action {
+        min-width: 180px;
       }
     }
   </style>
@@ -657,13 +655,7 @@
   <section id="currentTickets">
     <button class="refresh-wallet" id="refreshWallet" type="button">
       <span class="refresh-question">Not seeing your latest ticket?</span>
-      <span class="refresh-action">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M20 7v5h-5"/>
-          <path d="M19 12a7 7 0 1 1-2-5"/>
-        </svg>
-        Refresh wallet
-      </span>
+      <span class="refresh-action">Refresh wallet</span>
     </button>
   </section>
 
@@ -789,19 +781,19 @@
       updateExpiryDate();
 
       const action = this.querySelector(".refresh-action");
-      const originalText = action.innerHTML;
+      const originalText = action.textContent;
 
       action.textContent = "Wallet refreshed";
 
       setTimeout(function () {
-        action.innerHTML = originalText;
+        action.textContent = originalText;
       }, 1400);
     });
 
     // Demo Add funds interaction.
-    // This button does not process real payments.
+    // No payment processing is connected.
     document.getElementById("addFundsButton").addEventListener("click", function () {
-      // No payment action is connected yet.
+      // Intentionally left inactive until a demo action is chosen.
     });
 
     // Secret message interaction.
