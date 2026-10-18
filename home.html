@@ -36,7 +36,7 @@
       background: #eef5ff;
     }
 
-    /* ORIGINAL TOP SECTION — PRESERVED */
+    /* HEADER */
     .header {
       height: 14vh;
       min-height: 95px;
@@ -82,14 +82,14 @@
       display: block;
     }
 
-    /* WALLET TABS — JOINED ROUNDED BUBBLE */
+    /* TABS WITH THIN, RAISED BLACK UNDERLINE */
     .tabs {
       flex-shrink: 0;
       height: 10vh;
       min-height: 65px;
       max-height: 90px;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       margin: 0 22px;
       padding: 0;
       border: none;
@@ -99,13 +99,10 @@
       display: flex;
       width: 100%;
       min-width: 0;
-      border: 1px solid #d8cbd2;
-      border-radius: 28px;
-      overflow: hidden;
-      background: transparent;
     }
 
     .tab {
+      position: relative;
       flex: 1;
       min-width: 0;
       display: flex;
@@ -113,22 +110,29 @@
       justify-content: center;
       gap: 6px;
       padding: 10px 5px;
+      font-family: inherit;
       font-size: clamp(11px, 3.2vw, 15px);
       font-weight: 700;
       white-space: nowrap;
       color: #363636;
       background: transparent;
       border: none;
+      cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
 
-    .tab + .tab {
-      border-left: 1px solid #d8cbd2;
+    .tab::after {
+      content: "";
+      position: absolute;
+      bottom: 3px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: transparent;
     }
 
-    .tab.active {
-      color: #a80b2b;
-      background: #fff1f4;
+    .tab.active::after {
+      background: #111;
     }
 
     .tab-icon {
@@ -149,7 +153,7 @@
       stroke-linejoin: round;
     }
 
-    /* WHITE SECTION — TICKET CARD ONLY */
+    /* TICKET CARD */
     .ticket-panel {
       flex: 0 0 auto;
       min-height: 0;
@@ -159,6 +163,10 @@
       display: block;
       background: white;
       border-radius: 18px;
+    }
+
+    .ticket-panel[hidden] {
+      display: none;
     }
 
     .ticket-card {
@@ -269,13 +277,12 @@
       font-weight: 650;
     }
 
-    /* REFRESH AREA — OUTSIDE THE WHITE TICKET SECTION */
+    /* CURRENT TICKETS AREA */
     #currentTickets {
       display: contents;
     }
 
-    #currentTickets[hidden],
-    #ticketHistory[hidden] {
+    #currentTickets[hidden] {
       display: none;
     }
 
@@ -334,12 +341,28 @@
       background: #fff5f6;
     }
 
+    /* CENTRED TICKET HISTORY MESSAGE */
+    #ticketHistory {
+      flex: 1;
+      width: 100%;
+      min-height: 150px;
+      padding: 24px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    #ticketHistory[hidden] {
+      display: none;
+    }
+
     .description {
-      flex-shrink: 0;
-      margin: 14px 0 0;
+      margin: 0;
       color: #7c7f84;
       font-size: clamp(14px, 4vw, 19px);
-      line-height: 1.35;
+      line-height: 1.5;
+      text-align: center;
     }
 
     .buy-button {
@@ -355,7 +378,7 @@
       cursor: pointer;
     }
 
-    /* ORIGINAL BOTTOM NAVIGATION — PRESERVED */
+    /* BOTTOM NAVIGATION */
     .bottom-nav {
       flex-shrink: 0;
       min-height: 68px;
@@ -453,7 +476,6 @@
 </head>
 
 <body>
-  <!-- ORIGINAL HEADER: UNCHANGED -->
   <header class="header">
     <h1>mTickets</h1>
 
@@ -468,10 +490,15 @@
     </div>
   </header>
 
-  <!-- JOINED CURRENT TICKETS / TICKET HISTORY BUBBLE -->
+  <!-- CURRENT TICKETS / TICKET HISTORY -->
   <nav class="tabs" aria-label="Ticket sections">
     <div class="tabs-inner">
-      <button class="tab active" id="currentTab" type="button">
+      <button
+        class="tab active"
+        id="currentTab"
+        type="button"
+        aria-selected="true"
+      >
         <span class="tab-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <path d="M4 5.5h16v13H4z"/>
@@ -482,7 +509,12 @@
         <span>Current tickets</span>
       </button>
 
-      <button class="tab" id="historyTab" type="button">
+      <button
+        class="tab"
+        id="historyTab"
+        type="button"
+        aria-selected="false"
+      >
         <span class="tab-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="9"/>
@@ -494,7 +526,7 @@
     </div>
   </nav>
 
-  <!-- WHITE BACKGROUND ENDS AFTER THE TICKET -->
+  <!-- TICKET CARD -->
   <main class="ticket-panel" id="ticketPanel">
     <a class="ticket-card" href="index.html">
       <span class="demo-label">mustiBus demo</span>
@@ -525,7 +557,7 @@
     </a>
   </main>
 
-  <!-- THIS AREA IS ON THE BLUE PAGE BACKGROUND -->
+  <!-- CURRENT TICKETS CONTENT -->
   <section id="currentTickets">
     <button class="refresh-wallet" id="refreshWallet" type="button">
       <span class="refresh-question">Not seeing your latest ticket?</span>
@@ -539,13 +571,14 @@
     </button>
   </section>
 
+  <!-- TICKET HISTORY CONTENT -->
   <section id="ticketHistory" hidden>
     <p class="description">No tickets in your history.</p>
   </section>
 
   <div class="buy-button" id="buyButton">Buy a new ticket</div>
 
-  <!-- ORIGINAL BOTTOM NAVIGATION ICONS: PRESERVED -->
+  <!-- BOTTOM NAVIGATION -->
   <footer class="bottom-nav">
     <div class="nav-item">
       <span class="nav-icon" aria-hidden="true">
@@ -581,7 +614,6 @@
 
   <script>
     // Demo-only weekly expiry display.
-    // The next Sunday is shown. If today is Sunday, use the following Sunday.
     // This does not renew or activate a real ticket.
 
     function getNextSundayExpiry() {
@@ -625,7 +657,7 @@
       }
     });
 
-    // Current tickets / Ticket history tabs.
+    // Switch tabs and move the black underline.
     const currentTab = document.getElementById("currentTab");
     const historyTab = document.getElementById("historyTab");
     const currentTickets = document.getElementById("currentTickets");
@@ -635,6 +667,10 @@
     currentTab.addEventListener("click", function () {
       currentTab.classList.add("active");
       historyTab.classList.remove("active");
+
+      currentTab.setAttribute("aria-selected", "true");
+      historyTab.setAttribute("aria-selected", "false");
+
       ticketPanel.hidden = false;
       currentTickets.hidden = false;
       ticketHistory.hidden = true;
@@ -643,6 +679,10 @@
     historyTab.addEventListener("click", function () {
       historyTab.classList.add("active");
       currentTab.classList.remove("active");
+
+      historyTab.setAttribute("aria-selected", "true");
+      currentTab.setAttribute("aria-selected", "false");
+
       ticketPanel.hidden = true;
       currentTickets.hidden = true;
       ticketHistory.hidden = false;
@@ -662,8 +702,9 @@
       }, 1400);
     });
 
+    // Custom secret message.
     document.getElementById("buyButton").addEventListener("click", function () {
-      alert("This is a mustiBus demo. Purchases are not available.");
+      alert("ay wassup you’ve found the secret message. Enjoying mustibus ? | snap: mvsti0");
     });
   </script>
 </body>
