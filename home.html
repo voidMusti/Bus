@@ -696,6 +696,7 @@
     });
 
     
+    
     // Secret message interaction.
     document.getElementById("buyButton").addEventListener("click", function () {
       const popup = document.createElement("div");
@@ -708,75 +709,53 @@
         align-items: center;
         justify-content: center;
         padding: 24px;
-        background: rgba(0, 0, 0, 0.7);
-        font-family: Arial, sans-serif;
+        background: rgba(0, 0, 0, 0.4);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       `;
 
       popup.innerHTML = `
         <div style="
-          box-sizing: border-box;
           width: 100%;
-          max-width: 340px;
-          padding: 28px 22px;
-          border: 1px solid #393943;
-          border-radius: 18px;
-          background: #111318;
-          color: #f5f5f7;
+          max-width: 320px;
+          padding: 24px 20px;
+          border-radius: 14px;
+          background: white;
+          color: #363636;
           text-align: center;
-          box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         ">
-          <div style="
-            color: #b9a4ff;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            margin-bottom: 18px;
-          ">✦ YOU FOUND IT ✦</div>
+          <h3 style="
+            margin: 0 0 16px;
+            font-size: 18px;
+            color: #ed0030;
+          ">✦ YOU FOUND IT ✦</h3>
 
-          <div style="
-            height: 1px;
-            background: #393943;
-            margin-bottom: 20px;
-          "></div>
+          <p style="margin: 0 0 12px; line-height: 1.5;">
+            Not everyone noticed this 👀
+          </p>
 
-          <h2 style="
-            font-size: 21px;
-            line-height: 1.4;
-            margin: 0 0 14px;
-          ">Not everyone noticed this 👀</h2>
+          <p style="margin: 0 0 16px; line-height: 1.5; color: #666;">
+            Just a little something I left hidden for the curious ones.
+          </p>
 
-          <p style="
-            font-size: 15px;
-            line-height: 1.6;
-            margin: 0 0 18px;
-            color: #d1d1d8;
-          ">Just a little something I left hidden for the curious ones.</p>
+          <p style="margin: 0 0 18px; line-height: 1.5;">
+            But tell me… are you enjoying mustiBus so far? 👀
+          </p>
 
-          <p style="
-            font-size: 15px;
-            line-height: 1.6;
-            margin: 0 0 24px;
-            color: #f5f5f7;
-          ">But tell me… are you enjoying mustiBus so far? 👀</p>
-
-          <div style="
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            margin-bottom: 24px;
-          ">@mvsti0 🦇</div>
+          <p style="margin: 0 0 18px; font-weight: 600;">
+            @mvsti0 🦇
+          </p>
 
           <button id="closeMustiPopup" style="
-            width: 100%;
-            padding: 12px;
+            padding: 9px 28px;
             border: none;
-            border-radius: 10px;
-            background: #b9a4ff;
-            color: #111318;
-            font-size: 15px;
+            border-radius: 20px;
+            background: #ed0030;
+            color: white;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-          ">Close</button>
+          ">OK</button>
         </div>
       `;
 
@@ -792,6 +771,7 @@
         }
       });
     });
+
 
   </script>
 </body>
