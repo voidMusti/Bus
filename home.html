@@ -82,50 +82,60 @@
       display: block;
     }
 
-    /* WALLET TABS */
+    /* WALLET TABS — JOINED ROUNDED BUBBLE */
     .tabs {
       flex-shrink: 0;
       height: 10vh;
       min-height: 65px;
       max-height: 90px;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       margin: 0 22px;
-      border-bottom: 1px solid #363636;
+      padding: 0;
+      border: none;
+    }
+
+    .tabs-inner {
+      display: flex;
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #d8cbd2;
+      border-radius: 28px;
+      overflow: hidden;
+      background: transparent;
     }
 
     .tab {
       flex: 1;
       min-width: 0;
-      position: relative;
-      text-align: center;
-      padding: 12px 2px 14px;
-      font-size: clamp(12px, 3.7vw, 17px);
-      font-weight: 750;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 5px;
+      font-size: clamp(11px, 3.2vw, 15px);
+      font-weight: 700;
       white-space: nowrap;
       color: #363636;
+      background: transparent;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .tab + .tab {
+      border-left: 1px solid #d8cbd2;
     }
 
     .tab.active {
-      color: #d8002b;
-    }
-
-    .tab.active::after {
-      content: "";
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: #ed0030;
+      color: #a80b2b;
+      background: #fff1f4;
     }
 
     .tab-icon {
-      width: 19px;
-      height: 19px;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 4px;
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+      display: block;
     }
 
     .tab-icon svg {
@@ -134,7 +144,7 @@
       display: block;
       fill: none;
       stroke: currentColor;
-      stroke-width: 2.2;
+      stroke-width: 1.9;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -341,7 +351,7 @@
       color: white;
       text-align: center;
       font-size: clamp(17px, 5vw, 22px);
-      font-weight: 750;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -458,26 +468,29 @@
     </div>
   </header>
 
-  <nav class="tabs">
-    <div class="tab active" id="currentTab">
-      <span class="tab-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <path d="M4 5.5h16v13H4z"/>
-          <path d="M4 9.5a2.5 2.5 0 0 0 0 5"/>
-          <path d="M20 9.5a2.5 2.5 0 0 0 0 5"/>
-        </svg>
-      </span>
-      Current tickets
-    </div>
+  <!-- JOINED CURRENT TICKETS / TICKET HISTORY BUBBLE -->
+  <nav class="tabs" aria-label="Ticket sections">
+    <div class="tabs-inner">
+      <button class="tab active" id="currentTab" type="button">
+        <span class="tab-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 5.5h16v13H4z"/>
+            <path d="M4 9.5a2.5 2.5 0 0 0 0 5"/>
+            <path d="M20 9.5a2.5 2.5 0 0 0 0 5"/>
+          </svg>
+        </span>
+        <span>Current tickets</span>
+      </button>
 
-    <div class="tab" id="historyTab">
-      <span class="tab-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M12 7v5l3.5 2"/>
-        </svg>
-      </span>
-      Ticket history
+      <button class="tab" id="historyTab" type="button">
+        <span class="tab-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3.5 2"/>
+          </svg>
+        </span>
+        <span>Ticket history</span>
+      </button>
     </div>
   </nav>
 
@@ -512,7 +525,7 @@
     </a>
   </main>
 
-  <!-- THIS AREA IS NOW ON THE BLUE PAGE BACKGROUND -->
+  <!-- THIS AREA IS ON THE BLUE PAGE BACKGROUND -->
   <section id="currentTickets">
     <button class="refresh-wallet" id="refreshWallet" type="button">
       <span class="refresh-question">Not seeing your latest ticket?</span>
@@ -618,7 +631,6 @@
     const currentTickets = document.getElementById("currentTickets");
     const ticketHistory = document.getElementById("ticketHistory");
     const ticketPanel = document.getElementById("ticketPanel");
-    const refreshWallet = document.getElementById("refreshWallet");
 
     currentTab.addEventListener("click", function () {
       currentTab.classList.add("active");
@@ -637,7 +649,7 @@
     });
 
     // Demo refresh interaction.
-    refreshWallet.addEventListener("click", function () {
+    document.getElementById("refreshWallet").addEventListener("click", function () {
       updateExpiryDate();
 
       const action = this.querySelector(".refresh-action");
