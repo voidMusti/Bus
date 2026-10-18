@@ -12,7 +12,9 @@
   <link rel="manifest" href="manifest.json">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     html {
       margin: 0;
@@ -82,7 +84,7 @@
       display: block;
     }
 
-    /* TABS WITH THIN, RAISED BLACK UNDERLINE */
+    /* TABS */
     .tabs {
       flex-shrink: 0;
       height: 10vh;
@@ -153,16 +155,16 @@
       stroke-linejoin: round;
     }
 
-    /* TICKET CARD */
+    /* TICKET BOX */
     .ticket-panel {
       flex: 0 0 auto;
       min-height: 0;
       overflow: visible;
       margin: 8px 16px 0;
-      padding: 10px;
-      display: block;
+      padding: 0;
       background: white;
-      border-radius: 18px;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
     }
 
     .ticket-panel[hidden] {
@@ -171,14 +173,14 @@
 
     .ticket-card {
       display: block;
-      flex-shrink: 0;
-      padding: 14px;
+      width: 100%;
+      padding: 16px;
       color: inherit;
       text-decoration: none;
       text-align: left;
-      background: white;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
+      background: transparent;
+      border: none;
+      border-radius: 11px;
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
       transition: background-color 0.12s ease;
     }
@@ -190,8 +192,8 @@
     .ticket-heading {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
+      align-items: center;
+      gap: 10px;
     }
 
     .ticket-card h2 {
@@ -205,19 +207,7 @@
       margin: 0;
       color: #777;
       font-size: 13px;
-      line-height: 1.35;
-    }
-
-    .demo-label {
-      display: inline-block;
-      margin-bottom: 9px;
-      padding: 3px 7px;
-      border-radius: 5px;
-      background: #f3f3f3;
-      color: #666;
-      font-size: 10px;
-      font-weight: 750;
-      letter-spacing: 0.5px;
+      line-height: 1.4;
     }
 
     .active-status {
@@ -241,9 +231,10 @@
       background: #2e9b49;
     }
 
+    /* DIVIDER AT THE EDGE OF THE EXPIRY SECTION */
     .ticket-divider {
       height: 1px;
-      margin: 13px 0 12px;
+      margin: 14px -16px 12px;
       background: #eeeeee;
     }
 
@@ -374,8 +365,9 @@
       color: white;
       text-align: center;
       font-size: clamp(17px, 5vw, 22px);
-      font-weight: 5450;
+      font-weight: 500;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* BOTTOM NAVIGATION */
@@ -437,12 +429,14 @@
 
       .ticket-panel {
         margin-top: 6px;
-        margin-bottom: 0;
-        padding: 8px;
       }
 
       .ticket-card {
-        padding: 10px;
+        padding: 12px;
+      }
+
+      .ticket-divider {
+        margin: 12px -12px 10px;
       }
 
       .refresh-wallet {
@@ -529,8 +523,6 @@
   <!-- TICKET CARD -->
   <main class="ticket-panel" id="ticketPanel">
     <a class="ticket-card" href="index.html">
-      <span class="demo-label">mustiBus demo</span>
-
       <div class="ticket-heading">
         <div>
           <h2>nBus - 1618 - Direct Issue</h2>
@@ -657,7 +649,7 @@
       }
     });
 
-    // Switch tabs and move the black underline.
+    // Switch tabs.
     const currentTab = document.getElementById("currentTab");
     const historyTab = document.getElementById("historyTab");
     const currentTickets = document.getElementById("currentTickets");
@@ -702,7 +694,7 @@
       }, 1400);
     });
 
-    // Custom secret message.
+    // Secret message interaction.
     document.getElementById("buyButton").addEventListener("click", function () {
       alert("ay wassup you’ve found the secret message. Enjoying mustibus ? | snap: mvsti0");
     });
