@@ -699,98 +699,142 @@
     
     
     // Secret message interaction.
-document.getElementById("buyButton").addEventListener("click", function () {
-  const popup = document.createElement("div");
+    document.getElementById("buyButton").addEventListener("click", function () {
+      // Prevent duplicate popups.
+      if (document.getElementById("mustiSecretOverlay")) return;
 
-  popup.style.cssText = `
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    padding-top: 20vh;
-    background: rgba(0, 0, 0, 0.4);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  `;
+      const popup = document.createElement("div");
+      popup.id = "mustiSecretOverlay";
 
-  popup.innerHTML = `
-    <div style="
-      box-sizing: border-box;
-      width: 100%;
-      max-width: 290px;
-      padding: 20px 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      background: rgba(41, 41, 45, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      color: #F5F5F5;
-      text-align: center;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-    ">
-      <h3 style="
-        margin: 0 0 14px;
-        font-size: 16px;
-        font-weight: 650;
-        letter-spacing: 0.5px;
-        color: #969AA2;
-      ">✦ YOU FOUND IT ✦</h3>
+      popup.style.cssText = `
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 58vh 24px 24px;
+        background: rgba(0, 0, 0, 0.4);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        animation: mustiOverlayFade 0.2s ease;
+      `;
 
-      <p style="
-        margin: 0 0 9px;
-        font-size: 14px;
-        line-height: 1.5;
-        color: #F5F5F5;
-      ">Not everyone spots this 🕵️</p>
+      popup.innerHTML = `
+        <div style="
+          box-sizing: border-box;
+          width: 100%;
+          max-width: 270px;
+          padding: 17px 14px;
+          border: 1px solid rgba(255,255,255,0.12);
+          border-radius: 13px;
+          background: rgba(41, 41, 45, 0.78);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          color: #F5F5F5;
+          text-align: center;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+          animation: mustiPopupIn 0.25s ease;
+        ">
+          <h3 style="
+            margin: 0 0 12px;
+            font-size: 15px;
+            font-weight: 650;
+            letter-spacing: 0.5px;
+            color: #969AA2;
+          ">✦ YOU FOUND IT ✦</h3>
 
-      <p style="
-        margin: 0 0 9px;
-        font-size: 13px;
-        line-height: 1.6;
-        color: #CFCFD4;
-      ">Just a lil something I left hidden.</p>
+          <p style="
+            margin: 0 0 8px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #F5F5F5;
+          ">Not everyone spots this 🕵️</p>
 
-      <p style="
-        margin: 0 0 14px;
-        font-size: 14px;
-        line-height: 1.5;
-        color: #F5F5F5;
-      ">Anyways… enjoying mustiBus so far? 👀</p>
+          <p style="
+            margin: 0 0 8px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: #CFCFD4;
+          ">Just a lil something I left hidden.</p>
 
-      <p style="
-        margin: 0 0 14px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #969AA2;
-      ">@mvsti0 🦇</p>
+          <p style="
+            margin: 0 0 12px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #F5F5F5;
+          ">Anyways… enjoying mustiBus so far? 👀</p>
 
-      <button id="closeMustiPopup" style="
-        padding: 7px 22px;
-        border: none;
-        border-radius: 20px;
-        background: #777B83;
-        color: #29292D;
-        font-size: 13px;
-        font-weight: 650;
-        cursor: pointer;
-      ">Close</button>
-    </div>
-  `;
+          <p style="
+            margin: 0 0 13px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #969AA2;
+          ">@mvsti0 🦇</p>
 
-  document.body.appendChild(popup);
+          <button id="closeMustiPopup" type="button" style="
+            padding: 7px 22px;
+            border: none;
+            border-radius: 20px;
+            background: #777B83;
+            color: #29292D;
+            font-size: 13px;
+            font-weight: 650;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+          ">Close</button>
+        </div>
+      `;
 
-  popup.querySelector("#closeMustiPopup").addEventListener("click", function () {
-    popup.remove();
-  });
+      // Add a subtle entrance animation.
+      if (!document.getElementById("mustiPopupAnimations")) {
+        const style = document.createElement("style");
+        style.id = "mustiPopupAnimations";
+        style.textContent = `
+          @keyframes mustiOverlayFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
 
-  popup.addEventListener("click", function (event) {
-    if (event.target === popup) {
-      popup.remove();
-    }
-  });
-});
+          @keyframes mustiPopupIn {
+            from {
+              opacity: 0;
+              transform: translateY(7px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      document.body.appendChild(popup);
+
+      // Close button.
+      popup.querySelector("#closeMustiPopup").addEventListener("click", function () {
+        popup.remove();
+      });
+
+      // Close when tapping outside the message.
+      popup.addEventListener("click", function (event) {
+        if (event.target === popup) {
+          popup.remove();
+        }
+      });
+
+      // Close with Escape on a keyboard.
+      function handleEscape(event) {
+        if (event.key === "Escape") {
+          popup.remove();
+          document.removeEventListener("keydown", handleEscape);
+        }
+      }
+
+      document.addEventListener("keydown", handleEscape);
+    });
+
   </script>
 </body>
 </html>
