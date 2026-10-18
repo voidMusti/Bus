@@ -36,6 +36,7 @@
       background: #eef5ff;
     }
 
+    /* ORIGINAL TOP SECTION — PRESERVED */
     .header {
       height: 14vh;
       min-height: 95px;
@@ -81,6 +82,7 @@
       display: block;
     }
 
+    /* WALLET TABS */
     .tabs {
       flex-shrink: 0;
       height: 10vh;
@@ -101,6 +103,11 @@
       font-size: clamp(12px, 3.7vw, 17px);
       font-weight: 750;
       white-space: nowrap;
+      color: #363636;
+    }
+
+    .tab.active {
+      color: #d8002b;
     }
 
     .tab.active::after {
@@ -110,15 +117,15 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: #000;
+      background: #ed0030;
     }
 
     .tab-icon {
-      width: 24px;
-      height: 24px;
+      width: 19px;
+      height: 19px;
       display: inline-block;
       vertical-align: middle;
-      margin-right: 5px;
+      margin-right: 4px;
     }
 
     .tab-icon svg {
@@ -132,6 +139,7 @@
       stroke-linejoin: round;
     }
 
+    /* WALLET PANEL */
     .ticket-panel {
       flex: 1 1 0;
       min-height: 180px;
@@ -161,13 +169,21 @@
     }
 
     .ticket-card:active {
-      background: #e8e8e8;
+      background: #f7f7f7;
+    }
+
+    .ticket-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
     }
 
     .ticket-card h2 {
       margin: 0 0 7px;
       font-size: clamp(16px, 4.5vw, 19px);
       font-weight: 750;
+      line-height: 1.3;
     }
 
     .ticket-card p {
@@ -177,16 +193,73 @@
       line-height: 1.35;
     }
 
-    .ticket-preview {
-      display: flex;
-      height: 38px;
-      margin-top: 12px;
-      overflow: hidden;
-      border-radius: 6px;
+    .demo-label {
+      display: inline-block;
+      margin-bottom: 9px;
+      padding: 3px 7px;
+      border-radius: 5px;
+      background: #f3f3f3;
+      color: #666;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 0.5px;
     }
 
-    .ticket-preview span {
-      flex: 1;
+    .active-status {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 7px;
+      border-radius: 6px;
+      background: #e8f5e9;
+      color: #28783a;
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #2e9b49;
+    }
+
+    .ticket-divider {
+      height: 1px;
+      margin: 13px 0 12px;
+      background: #eeeeee;
+    }
+
+    .expiry-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .clock-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      display: block;
+      fill: none;
+      stroke: #777;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .expiry-label {
+      color: #777;
+    }
+
+    .expiry-date {
+      color: #363636;
+      font-weight: 650;
     }
 
     .description {
@@ -195,6 +268,52 @@
       color: #7c7f84;
       font-size: clamp(14px, 4vw, 19px);
       line-height: 1.35;
+    }
+
+    /* REFRESH WALLET OUTLINED SHAPE */
+    .refresh-wallet {
+      flex-shrink: 0;
+      width: 100%;
+      margin-top: 18px;
+      padding: 13px 10px;
+      border: 1px solid #dedede;
+      border-radius: 12px;
+      background: #fff;
+      text-align: center;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .refresh-question {
+      display: block;
+      margin-bottom: 7px;
+      color: #777;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .refresh-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #ed0030;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .refresh-action svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .refresh-wallet:active {
+      background: #fff5f6;
     }
 
     .buy-button {
@@ -207,8 +326,10 @@
       text-align: center;
       font-size: clamp(17px, 5vw, 22px);
       font-weight: 750;
+      cursor: pointer;
     }
 
+    /* ORIGINAL BOTTOM NAVIGATION — PRESERVED */
     .bottom-nav {
       flex-shrink: 0;
       min-height: 68px;
@@ -275,13 +396,13 @@
         padding: 10px;
       }
 
-      .ticket-preview {
-        height: 30px;
-        margin-top: 8px;
-      }
-
       .description {
         margin-top: 9px;
+      }
+
+      .refresh-wallet {
+        margin-top: 12px;
+        padding: 10px;
       }
 
       .buy-button {
@@ -302,6 +423,7 @@
 </head>
 
 <body>
+  <!-- ORIGINAL HEADER: UNCHANGED -->
   <header class="header">
     <h1>mTickets</h1>
 
@@ -317,7 +439,7 @@
   </header>
 
   <nav class="tabs">
-    <div class="tab active">
+    <div class="tab active" id="currentTab">
       <span class="tab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24">
           <path d="M4 5.5h16v13H4z"/>
@@ -328,7 +450,7 @@
       Current tickets
     </div>
 
-    <div class="tab">
+    <div class="tab" id="historyTab">
       <span class="tab-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="9"/>
@@ -339,22 +461,58 @@
     </div>
   </nav>
 
-  <main class="ticket-panel">
-    <a class="ticket-card" href="index.html">
-      <h2>nBus - 1618 - Direct Issue</h2>
-      <p>Unlimited travel · West Midlands nBus zone</p>
-      <div class="ticket-preview" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </a>
+  <main class="ticket-panel" id="ticketPanel">
+    <section id="currentTickets">
+      <a class="ticket-card" href="index.html">
+        <span class="demo-label">mustiBus demo</span>
 
-    <p class="description">Tap your ticket above to view it.</p>
+        <div class="ticket-heading">
+          <div>
+            <h2>nBus - 1618 - Direct Issue</h2>
+            <p>Unlimited travel · West Midlands nBus zone</p>
+          </div>
+
+          <span class="active-status">
+            <span class="status-dot"></span>
+            Active
+          </span>
+        </div>
+
+        <div class="ticket-divider"></div>
+
+        <div class="expiry-row">
+          <svg class="clock-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+
+          <span class="expiry-label">Expires on</span>
+          <span class="expiry-date" id="expiryDate">25 October 2026</span>
+        </div>
+      </a>
+
+      <p class="description">Tap your ticket above to view it.</p>
+
+      <button class="refresh-wallet" id="refreshWallet" type="button">
+        <span class="refresh-question">Not seeing your latest ticket?</span>
+        <span class="refresh-action">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 7v5h-5"/>
+            <path d="M19 12a7 7 0 1 1-2-5"/>
+          </svg>
+          Refresh wallet
+        </span>
+      </button>
+    </section>
+
+    <section id="ticketHistory" hidden>
+      <p class="description">No tickets in your history.</p>
+    </section>
   </main>
 
-  <div class="buy-button">Buy a new ticket</div>
+  <div class="buy-button" id="buyButton">Buy a new ticket</div>
 
+  <!-- ORIGINAL BOTTOM NAVIGATION ICONS: PRESERVED -->
   <footer class="bottom-nav">
     <div class="nav-item">
       <span class="nav-icon" aria-hidden="true">
@@ -389,142 +547,90 @@
   </footer>
 
   <script>
-    // Shared hourly colour generator.
-    // Keep this function identical in home.html and index.html.
+    /*
+      Demo-only weekly expiry display.
+      The next Sunday is shown; if today is Sunday, the date moves
+      to the following Sunday. This does not renew a real ticket.
+    */
 
-    function getSharedHourlyStripColours() {
-      const parts = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Europe/London",
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        hourCycle: "h23"
-      }).formatToParts(new Date());
+    function getNextSundayExpiry() {
+      const now = new Date();
 
-      const part = type => parts.find(item => item.type === type).value;
-
-      const year = Number(part("year"));
-      const month = Number(part("month"));
-      const day = Number(part("day"));
-      const hour = Number(part("hour"));
-
-      const hourNumber = Math.floor(
-        Date.UTC(year, month - 1, day, hour) / 3600000
+      const expiry = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
       );
 
-      let seed = (hourNumber ^ 0x6D2B79F5) >>> 0;
+      let daysUntilSunday = (7 - expiry.getDay()) % 7;
 
-      function random() {
-        seed = (seed + 0x6D2B79F5) >>> 0;
-
-        let value = seed;
-        value = Math.imul(value ^ (value >>> 15), value | 1);
-        value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
-
-        return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+      if (daysUntilSunday === 0) {
+        daysUntilSunday = 7;
       }
 
-      function between(min, max) {
-        return min + Math.floor(random() * (max - min + 1));
-      }
+      expiry.setDate(expiry.getDate() + daysUntilSunday);
+      expiry.setHours(23, 59, 59, 999);
 
-      // Colour families. Each family has its own hue, saturation
-      // and brightness range so greys stay grey and icy blues stay icy.
-      const families = [
-        { name: "grey",       h: [205, 220], s: [8, 22],   l: [48, 78] },
-        { name: "icyBlue",    h: [188, 205], s: [45, 78],  l: [72, 89] },
-        { name: "blue",       h: [205, 225], s: [55, 88],  l: [38, 68] },
-        { name: "purple",     h: [258, 282], s: [48, 85],  l: [38, 72] },
-        { name: "magenta",    h: [310, 330], s: [58, 92],  l: [42, 72] },
-        { name: "pink",       h: [332, 350], s: [48, 88],  l: [58, 84] },
-        { name: "red",        h: [0, 9],     s: [58, 90],  l: [38, 65] },
-        { name: "orange",     h: [18, 35],   s: [62, 94],  l: [44, 70] },
-        { name: "yellow",     h: [43, 57],   s: [55, 92],  l: [67, 88] },
-        { name: "green",      h: [105, 140], s: [38, 78],  l: [32, 70] },
-        { name: "teal",       h: [165, 185], s: [42, 82],  l: [36, 70] }
-      ];
-
-      function makeColour(family, lightnessOverride) {
-        const hue = between(family.h[0], family.h[1]);
-        const saturation = between(family.s[0], family.s[1]);
-        const lightness = lightnessOverride === undefined
-          ? between(family.l[0], family.l[1])
-          : lightnessOverride;
-
-        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-      }
-
-      // Most hours mix three different colour families.
-      // Some hours deliberately use related shades, such as
-      // dark green + light green + pale yellow.
-      const useRelatedColours = random() < 0.24;
-
-      if (useRelatedColours) {
-        const schemes = [
-          ["green", "green", "yellow"],
-          ["blue", "blue", "icyBlue"],
-          ["purple", "purple", "icyBlue"],
-          ["magenta", "pink", "purple"],
-          ["red", "pink", "orange"],
-          ["teal", "green", "icyBlue"],
-          ["orange", "yellow", "red"],
-          ["grey", "icyBlue", "blue"],
-          ["grey", "grey", "icyBlue"],
-          ["green", "teal", "yellow"],
-          ["pink", "magenta", "icyBlue"]
-        ];
-
-        const scheme = schemes[between(0, schemes.length - 1)];
-
-        return scheme.map((name, index) => {
-          const family = families.find(item => item.name === name);
-
-          // Encourage different lightness levels in related palettes.
-          const lightness = [
-            between(30, 48),
-            between(46, 68),
-            between(69, 88)
-          ][index];
-
-          return makeColour(family, lightness);
-        });
-      }
-
-      // Choose three different families for a proper mixed combination.
-      const chosen = [];
-
-      while (chosen.length < 3) {
-        const family = families[between(0, families.length - 1)];
-
-        if (!chosen.some(item => item.name === family.name)) {
-          chosen.push(family);
-        }
-      }
-
-      // Shuffle which family appears in each strip.
-      for (let i = chosen.length - 1; i > 0; i--) {
-        const j = between(0, i);
-        [chosen[i], chosen[j]] = [chosen[j], chosen[i]];
-      }
-
-      return chosen.map(family => makeColour(family));
+      return expiry;
     }
 
-    function updateWalletStripColours() {
-      const colours = getSharedHourlyStripColours();
+    function updateExpiryDate() {
+      const expiry = getNextSundayExpiry();
 
-      document.querySelectorAll(".ticket-preview span")
-        .forEach((strip, index) => {
-          strip.style.backgroundColor = colours[index];
-        });
+      document.getElementById("expiryDate").textContent =
+        new Intl.DateTimeFormat("en-GB", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }).format(expiry);
     }
 
-    updateWalletStripColours();
+    updateExpiryDate();
+    setInterval(updateExpiryDate, 60000);
 
-    // Refresh at the hour boundary without changing the design.
-    setInterval(updateWalletStripColours, 1000);
-    window.addEventListener("pageshow", updateWalletStripColours);
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) {
+        updateExpiryDate();
+      }
+    });
+
+    // Current tickets / Ticket history tabs.
+    const currentTab = document.getElementById("currentTab");
+    const historyTab = document.getElementById("historyTab");
+    const currentTickets = document.getElementById("currentTickets");
+    const ticketHistory = document.getElementById("ticketHistory");
+
+    currentTab.addEventListener("click", function () {
+      currentTab.classList.add("active");
+      historyTab.classList.remove("active");
+      currentTickets.hidden = false;
+      ticketHistory.hidden = true;
+    });
+
+    historyTab.addEventListener("click", function () {
+      historyTab.classList.add("active");
+      currentTab.classList.remove("active");
+      currentTickets.hidden = true;
+      ticketHistory.hidden = false;
+    });
+
+    // Refresh interaction for the demo wallet.
+    document.getElementById("refreshWallet").addEventListener("click", function () {
+      updateExpiryDate();
+
+      const action = this.querySelector(".refresh-action");
+      const originalText = action.innerHTML;
+
+      action.textContent = "Wallet refreshed";
+
+      setTimeout(function () {
+        action.innerHTML = originalText;
+      }, 1400);
+    });
+
+    document.getElementById("buyButton").addEventListener("click", function () {
+      alert("This is a mustiBus demo. Purchases are not available.");
+    });
   </script>
 </body>
 </html>
