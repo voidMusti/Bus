@@ -270,33 +270,39 @@
       line-height: 1.35;
     }
 
-    /* REFRESH WALLET OUTLINED SHAPE */
+    /* REFRESH WALLET — OUTER BOX REMOVED */
     .refresh-wallet {
       flex-shrink: 0;
       width: 100%;
       margin-top: 18px;
-      padding: 13px 10px;
-      border: 1px solid #dedede;
-      border-radius: 12px;
-      background: #fff;
+      padding: 8px 10px;
+      border: none;
+      border-radius: 0;
+      background: transparent;
       text-align: center;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
     }
 
+    /* Slightly larger question text */
     .refresh-question {
       display: block;
-      margin-bottom: 7px;
+      margin-bottom: 9px;
       color: #777;
-      font-size: 13px;
-      line-height: 1.35;
+      font-size: 15px;
+      line-height: 1.4;
     }
 
+    /* Thin red rounded outline around Refresh wallet only */
     .refresh-action {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
+      padding: 8px 16px;
+      border: 1px solid #ed0030;
+      border-radius: 24px;
+      background: white;
       color: #ed0030;
       font-size: 14px;
       font-weight: 750;
@@ -313,6 +319,10 @@
     }
 
     .refresh-wallet:active {
+      background: transparent;
+    }
+
+    .refresh-action:active {
       background: #fff5f6;
     }
 
@@ -402,7 +412,15 @@
 
       .refresh-wallet {
         margin-top: 12px;
-        padding: 10px;
+        padding: 8px 10px;
+      }
+
+      .refresh-question {
+        font-size: 15px;
+      }
+
+      .refresh-action {
+        padding: 8px 16px;
       }
 
       .buy-button {
@@ -547,11 +565,9 @@
   </footer>
 
   <script>
-    /*
-      Demo-only weekly expiry display.
-      The next Sunday is shown; if today is Sunday, the date moves
-      to the following Sunday. This does not renew a real ticket.
-    */
+    // Demo-only weekly expiry display.
+    // The next Sunday is shown. If today is Sunday, use the following Sunday.
+    // This does not renew or activate a real ticket.
 
     function getNextSundayExpiry() {
       const now = new Date();
@@ -614,7 +630,7 @@
       ticketHistory.hidden = false;
     });
 
-    // Refresh interaction for the demo wallet.
+    // Demo refresh interaction.
     document.getElementById("refreshWallet").addEventListener("click", function () {
       updateExpiryDate();
 
