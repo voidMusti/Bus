@@ -41,23 +41,23 @@ body {
 
     /* HEADER */
     .header {
-      height: 14vh;
-      min-height: 95px;
-      max-height: 145px;
-      flex-shrink: 0;
-      padding: 0 26px 22px;
-      display: flex;
-      align-items: flex-end;
-      position: relative;
-      color: white;
-      background: linear-gradient(
-        135deg,
-        #ed0030 0%,
-        #ed0030 52%,
-        #55585c 52%,
-        #55585c 100%
-      );
-    }
+  height: calc(14vh + env(safe-area-inset-top));
+  min-height: calc(95px + env(safe-area-inset-top));
+  max-height: 145px;
+  flex-shrink: 0;
+  padding: env(safe-area-inset-top) 26px 22px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  color: white;
+  background: linear-gradient(
+    135deg,
+    #ed0030 0%,
+    #ed0030 52%,
+    #55585c 52%,
+    #55585c 100%
+  );
+}
 
     .header h1 {
       margin: 0;
