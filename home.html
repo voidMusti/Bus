@@ -948,11 +948,22 @@ body {
     document.getElementById("addFundsButton").addEventListener("click", function () {
   window.alert("Nice try pal ✌🏻\nYou've got no funds 😭");
 });
-    window.addEventListener("pageshow", function () {
+    
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+function resetWalletScroll() {
+  window.scrollTo(0, 0);
+
   requestAnimationFrame(function () {
     window.scrollTo(0, 0);
   });
-});
+}
+
+window.addEventListener("pageshow", resetWalletScroll);
+window.addEventListener("load", resetWalletScroll);
+
   </script>
 </body>
 </html>
