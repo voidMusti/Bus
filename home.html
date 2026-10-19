@@ -954,6 +954,20 @@ body {
     window.scrollTo(0, 0);
   });
 });
+    window.addEventListener("load", function () {
+  setTimeout(function () {
+    const html = document.documentElement;
+    const body = document.body;
+
+    alert(
+      "Screen: " + html.clientHeight + "px\n" +
+      "Page: " + html.scrollHeight + "px\n" +
+      "Body: " + body.scrollHeight + "px\n" +
+      "Extra height: " +
+      (html.scrollHeight - html.clientHeight) + "px"
+    );
+  }, 500);
+});
   </script>
 </body>
 </html>
