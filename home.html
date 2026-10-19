@@ -21,7 +21,6 @@
       width: 100%;
       height: 100%;
       overflow-x: hidden;
-      overflow-y: hidden;
       background: #eef5ff;
     }
 
@@ -29,7 +28,7 @@
 body {
  margin:0;
  width:100%;
- height:100%;
+ min-height:100vh;
  padding-bottom:0px;
  display:flex;
  flex-direction:column;
@@ -953,20 +952,6 @@ body {
   requestAnimationFrame(function () {
     window.scrollTo(0, 0);
   });
-});
-    window.addEventListener("load", function () {
-  setTimeout(function () {
-    const html = document.documentElement;
-    const body = document.body;
-
-    alert(
-      "Screen: " + html.clientHeight + "px\n" +
-      "Page: " + html.scrollHeight + "px\n" +
-      "Body: " + body.scrollHeight + "px\n" +
-      "Extra height: " +
-      (html.scrollHeight - html.clientHeight) + "px"
-    );
-  }, 500);
 });
   </script>
 </body>
