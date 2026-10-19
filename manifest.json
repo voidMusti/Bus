@@ -1,7 +1,7 @@
 
 {
   "name": "mustiBus",
-  "short_name": "mTickets",
+  "short_name": "mustiBus",
   "description": "mustiBus ticket wallet demo",
   "start_url": "./home.html",
   "scope": "./",
