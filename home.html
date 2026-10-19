@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,20 +23,18 @@
       background: #eef5ff;
     }
 
-    
-body {
- margin:0;
- width:100%;
- min-height:100vh;
- padding-bottom:0px;
- display:flex;
- flex-direction:column;
- overflow-x:hidden;
- font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
- color:#363636;
- background:#eef5ff;
-}
-
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100vh;
+      padding-bottom: 0px;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #363636;
+      background: #eef5ff;
+    }
 
     /* HEADER */
     .header {
@@ -337,56 +334,54 @@ body {
       display: none;
     }
 
-    
-.refresh-wallet {
-  flex-shrink: 0;
-  align-self: stretch;
-  width: auto;
-  margin: 8px 32px 0px;
-  padding: 4px 0 0;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  color: #000;
-  text-align: center;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  font-family: inherit;
-}
+    .refresh-wallet {
+      flex-shrink: 0;
+      align-self: stretch;
+      width: auto;
+      margin: 8px 32px 0px;
+      padding: 4px 0 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      color: #000;
+      text-align: center;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      font-family: inherit;
+    }
 
-.refresh-question {
-  display: block;
-  margin-bottom: 5px;
-  color: #777;
-  font-size: 16px;
-  line-height: 1.3;
-  transform: translateY(15px);
-}
+    .refresh-question {
+      display: block;
+      margin-bottom: 5px;
+      color: #777;
+      font-size: 16px;
+      line-height: 1.3;
+      transform: translateY(15px);
+    }
 
-.refresh-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 0;
-  padding: 14px 15px;
-  border: 2px solid #ed0030;
-  border-radius: 999px;
-  background: #eef5ff;
-  color: #363636;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.2;
-  transform: translateY(40px);
-}
+    .refresh-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      padding: 14px 15px;
+      border: 2px solid #ed0030;
+      border-radius: 999px;
+      background: #eef5ff;
+      color: #363636;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.2;
+      transform: translateY(40px);
+    }
 
-.refresh-wallet:active {
-  background: transparent;
-}
+    .refresh-wallet:active {
+      background: transparent;
+    }
 
-.refresh-action:active {
-  background: #e4edfa;
-}
-
+    .refresh-action:active {
+      background: #e4edfa;
+    }
 
     /* CENTRED TICKET HISTORY MESSAGE */
     #ticketHistory {
@@ -558,6 +553,50 @@ body {
 
       .refresh-action {
         min-width: 180px;
+      }
+    }
+
+    /* TICKET SLIDE-UP OVERLAY */
+    .ticket-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.3s ease;
+    }
+
+    .ticket-overlay.open {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .ticket-overlay iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: transparent;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .ticket-overlay.open iframe {
+      transform: translateY(0);
+    }
+
+    .ticket-overlay.closing {
+      background: rgba(0, 0, 0, 0);
+    }
+
+    .ticket-overlay.closing iframe {
+      transform: translateY(100%);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticket-overlay,
+      .ticket-overlay iframe {
+        transition-duration: 0.01ms;
       }
     }
   </style>
@@ -868,7 +907,7 @@ body {
             color: #F5F5F5;
           ">Anyways… enjoying mustiBus so far? 👀</p>
 
-                  <p style="
+          <p style="
             margin: 0 0 13px;
             font-size: 12px;
             font-weight: 600;
@@ -945,14 +984,56 @@ body {
 
       document.addEventListener("keydown", handleEscape);
     });
+
     document.getElementById("addFundsButton").addEventListener("click", function () {
-  window.alert("Nice try pal ✌🏻\nYou've got no funds 😭");
-});
+      window.alert("Nice try pal ✌🏻\nYou've got no funds 😭");
+    });
+
     window.addEventListener("pageshow", function () {
-  requestAnimationFrame(function () {
-    window.scrollTo(0, 0);
-  });
-});
+      requestAnimationFrame(function () {
+        window.scrollTo(0, 0);
+      });
+    });
+
+    // Open the ticket as a slide-up screen.
+    const ticketCard = document.querySelector(".ticket-card");
+
+    ticketCard.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      if (document.querySelector(".ticket-overlay")) return;
+
+      const overlay = document.createElement("div");
+      overlay.className = "ticket-overlay";
+
+      const frame = document.createElement("iframe");
+      frame.src = "index.html?modal=1";
+      frame.title = "Ticket details";
+
+      overlay.appendChild(frame);
+      document.body.appendChild(overlay);
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          overlay.classList.add("open");
+        });
+      });
+    });
+
+    // Close the ticket with a slide-down animation.
+    window.addEventListener("message", function (event) {
+      if (event.data !== "closeMustiTicket") return;
+
+      const overlay = document.querySelector(".ticket-overlay");
+      if (!overlay) return;
+
+      overlay.classList.remove("open");
+      overlay.classList.add("closing");
+
+      setTimeout(function () {
+        overlay.remove();
+      }, 360);
+    });
   </script>
 </body>
 </html>
