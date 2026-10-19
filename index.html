@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="color-scheme" content="light">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -35,6 +34,14 @@
       padding-bottom: 15px;
       overflow-x: hidden;
       overflow-y: auto;
+    }
+
+    /* Transparent background when displayed over the wallet. */
+    body.modal-mode {
+      background: transparent;
+      min-height: 100%;
+      padding-top: 15px;
+      padding-bottom: 15px;
     }
 
     .ticket {
@@ -269,13 +276,46 @@
       border-bottom-left-radius: 3px;
       border-bottom-right-radius: 3px;
     }
+
+    /* Fit the ticket neatly within the slide-up screen. */
+    body.modal-mode .ticket {
+      margin-top: 0;
+    }
+
+    @media (max-height: 740px) {
+      body.modal-mode {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      body.modal-mode .ticket {
+        margin-bottom: 8px;
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="ticket">
     <div class="top-strip">
-      <div class="close" onclick="window.location.replace('home.html')">Close</div>
+      <div
+        class="close"
+        role="button"
+        tabindex="0"
+        onclick="
+          if (window.parent !== window) {
+            window.parent.postMessage('closeMustiTicket', '*');
+          } else {
+            window.location.replace('home.html');
+          }
+        "
+        onkeydown="
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            this.click();
+          }
+        "
+      >Close</div>
     </div>
 
     <div class="header">
@@ -317,6 +357,11 @@
   </div>
 
   <script>
+    // Enable transparent background when embedded in the wallet overlay.
+    if (new URLSearchParams(window.location.search).get("modal") === "1") {
+      document.body.classList.add("modal-mode");
+    }
+
     function generateQRCode() {
       const qrContainer = document.getElementById("qrcode");
       qrContainer.innerHTML = "";
