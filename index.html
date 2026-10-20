@@ -21,25 +21,22 @@
       box-sizing: border-box;
     }
     html {
-  min-height: 100%;
+  height: 100%;
   background: #eef5ff;
 }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #eef5ff;
-      color: #fff;
-      min-height: 100vh;
-      min-height: 100dvh;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #eef5ff;
+  min-height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
 
     .ticket {
       width: 100%;
@@ -495,13 +492,7 @@
 
     updateExpiry();
     setInterval(updateExpiry, 1000);
-    window.addEventListener("pageshow", function () {
-  requestAnimationFrame(function () {
-    document.documentElement.style.backgroundColor = "#eef5ff";
-    document.body.style.backgroundColor = "#eef5ff";
-    window.dispatchEvent(new Event("resize"));
-  });
-});
+    
   </script>
 
   <div style="
