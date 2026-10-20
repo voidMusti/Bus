@@ -495,6 +495,13 @@
 
     updateExpiry();
     setInterval(updateExpiry, 1000);
+    window.addEventListener("pageshow", function () {
+  requestAnimationFrame(function () {
+    document.documentElement.style.backgroundColor = "#eef5ff";
+    document.body.style.backgroundColor = "#eef5ff";
+    window.dispatchEvent(new Event("resize"));
+  });
+});
   </script>
 
   <div style="
