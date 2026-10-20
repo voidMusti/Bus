@@ -270,6 +270,11 @@
       border-bottom-left-radius: 3px;
       border-bottom-right-radius: 3px;
     }
+    @media not all and (display-mode: standalone) {
+  .ticket {
+    transform: translateY(0);
+  }
+}
   </style>
 </head>
 
@@ -497,7 +502,7 @@
     opacity: 0.6;
     user-select: none;
   ">
-    UI Demo project
+    Demo project
   </div>
 </body>
 </html>
