@@ -38,21 +38,22 @@ body {
   align-items: flex-start;
   padding-top: 15px;
   padding-bottom: 15px;
-  overflow-x: clip;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
     .ticket {
       width: 100%;
       max-width: 370px;
       background: #fdfdfd;
-      margin: 0 12px;
+      margin: 36px 12px 0;
       border-radius: 16px;
       overflow: hidden;
       box-shadow:
         0 5px 12px rgba(0, 0, 0, 0.17),
         0 2px 4px rgba(0, 0, 0, 0.10);
       position: relative;
-      transform: translateY(36px);
+      transform: none;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
     }
@@ -276,7 +277,7 @@ body {
     }
     @media not all and (display-mode: standalone) {
   .ticket {
-    transform: translateY(0);
+    margin-top: 0;
   }
 }
   </style>
