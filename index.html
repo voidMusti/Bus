@@ -41,6 +41,22 @@
       padding-bottom: 15px;
       overflow-x: hidden;
       overflow-y: auto;
+      position: relative;
+    }
+
+    /* Curved background extension behind Close */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 39px;
+      left: -5%;
+      width: 110%;
+      height: 76px;
+      background: #f5f5f5;
+      border-radius: 50% 50% 0 0 / 34px 34px 0 0;
+      box-shadow: 0 4px 9px rgba(0, 0, 0, 0.12);
+      z-index: 0;
+      pointer-events: none;
     }
 
     .ticket {
@@ -57,6 +73,7 @@
       transform: none;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
+      z-index: 2;
     }
 
     .close {
@@ -272,6 +289,10 @@
     }
 
     @media not all and (display-mode: standalone) {
+      body::before {
+        top: 11px;
+      }
+
       .ticket {
         margin-top: 45px;
       }
@@ -396,7 +417,7 @@
         { name: "pink",       h: [332, 350], s: [48, 88],  l: [58, 84] },
         { name: "red",        h: [0, 9],     s: [58, 90],  l: [38, 65] },
         { name: "orange",     h: [18, 35],   s: [62, 94],  l: [44, 70] },
-        { name: "yellow",     h: [43, 57],  s: [55, 92],  l: [67, 88] },
+        { name: "yellow",     h: [43, 57],   s: [55, 92],  l: [67, 88] },
         { name: "green",      h: [105, 140], s: [38, 78],  l: [32, 70] },
         { name: "teal",       h: [165, 185], s: [42, 82],  l: [36, 70] }
       ];
