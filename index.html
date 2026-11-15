@@ -41,24 +41,7 @@
       padding-bottom: 15px;
       overflow-x: hidden;
       overflow-y: auto;
-      position: relative;
     }
-
-    /* Curved background extension behind Close */
-    /* Natural curved background extension behind Close */
-body::before {
-  content: "";
-  position: absolute;
-  top: 100px;
-  left: 0;
-  width: 100%;
-  height: 75px;
-  background: #f5f5f5;
-  clip-path: ellipse(75% 100% at 50% 100%);
-  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.16));
-  z-index: 1;
-  pointer-events: none;
-}
 
     .ticket {
       width: 100%;
@@ -74,7 +57,6 @@ body::before {
       transform: none;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
-      z-index: 2;
     }
 
     .close {
@@ -290,10 +272,6 @@ body::before {
     }
 
     @media not all and (display-mode: standalone) {
-      body::before {
-        top: 11px;
-      }
-
       .ticket {
         margin-top: 45px;
       }
@@ -418,7 +396,7 @@ body::before {
         { name: "pink",       h: [332, 350], s: [48, 88],  l: [58, 84] },
         { name: "red",        h: [0, 9],     s: [58, 90],  l: [38, 65] },
         { name: "orange",     h: [18, 35],   s: [62, 94],  l: [44, 70] },
-        { name: "yellow",     h: [43, 57],   s: [55, 92],  l: [67, 88] },
+        { name: "yellow",     h: [43, 57],  s: [55, 92],  l: [67, 88] },
         { name: "green",      h: [105, 140], s: [38, 78],  l: [32, 70] },
         { name: "teal",       h: [165, 185], s: [42, 82],  l: [36, 70] }
       ];
